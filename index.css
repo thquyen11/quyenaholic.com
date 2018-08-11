@@ -52,3 +52,25 @@ img{
 .project-card{
     margin: 20px auto;
 }
+
+.project-card div{
+    min-height: 420px;
+    background-color: #536070; 
+    border-radius: 5px;
+    padding-top: 10px;
+}
+
+.card-img-top{
+    height: 250px;
+    width: 100%;
+}
+
+.card-title{
+    margin: 10px;
+}
+
+.work-experience{
+    margin: 10px 0px;
+    padding-left: 0;
+    border: 1px solid red;
+}
