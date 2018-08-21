@@ -1,3 +1,13 @@
+import './ajaxchimp.js';
+import './bootstrap.js';
+import './bootstrap.min.js';
+import './jquery.js';
+import './nicescroll.js';
+import './owl.carousel.min.js';
+import './parallax.js';
+import './scrollTo.js';
+import './wow.js';
+
 $(document).ready(function(){
 
 	//Navigation menu scrollTo
