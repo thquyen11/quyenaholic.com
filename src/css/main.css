@@ -1,5 +1,11 @@
+@import './bootstrap.css';
+@import './animate.css';
+@import './owl.theme.css';
+@import './owl.transitions.css';
+@import './reset.css';
+
 /*		Fonts		*/
-@font-face {
+/* @font-face {
     font-family: 'open_regular';
     src: url('../fonts/opensans-regular.eot');
     src: url('../fonts/opensans-regular.eot?#iefix') format('embedded-opentype'),
@@ -35,7 +41,7 @@
     font-weight: normal;
     font-style: normal;
 
-}
+} */
 
 
 
@@ -62,13 +68,6 @@ a:focus{
 .container{
 	max-width: 1130px;
 }
-
-
-
-
-
-
-
 
 
 
