@@ -7,6 +7,7 @@ import './owl.carousel.min.js';
 import './parallax.js';
 import './scrollTo.js';
 import './wow.js';
+import '../css/main.css';
 
 $(document).ready(function(){
 
