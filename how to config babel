@@ -1,2 +1,0 @@
-npm i --save-dev webpack webpack-cli webpack-dev-server babel-core babel-loader babel-preset-es2015 css-loader extract-text-webpack-plugin
-
