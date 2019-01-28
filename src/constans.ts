@@ -1,0 +1,1 @@
+export const SAMPLE_CONSTANS = 'SAMPLE_CONSTANS';
