@@ -9,7 +9,9 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import registerServiceWorker from './registerServiceWorker';
 import LandingPage from 'containers/LandingPage/LandingPage';
 import { EmailContact } from "./containers/LandingPage/rLandingPage";
+import { Clock } from "./containers/DevSpace/rDevSpace";
 import * as WebFont from 'webfontloader';
+import DevSpace from 'containers/DevSpace/DevSpace';
 
 WebFont.load({
   google: {
@@ -28,7 +30,7 @@ const logger = createLogger();
  * * If store is not listed here, it's update state won't be transfered to child components
  */
 const rootReducers = combineReducers({
-  EmailContact
+  EmailContact, Clock
 });
 
 /**
@@ -62,6 +64,7 @@ ReactDOM.render(
     <BrowserRouter>
       <Switch>
         <Route exact path='/' component={LandingPage} />
+        <Route exact path='/devspace' component={DevSpace} />
       </Switch>
     </BrowserRouter>
   </Provider>,
