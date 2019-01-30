@@ -13,7 +13,7 @@ class ProjectCard extends React.Component<IProjectCard> {
   render() {
     const { project } = this.props;
     return (
-      <div className="card col-md-3" id="project-card">
+      <div className="card col-lg-3 col-md-5" id="project-card">
         <img src={project.photo} alt="project photo" />
         <h5>{project.name}</h5>
         <p>{project.description}</p>

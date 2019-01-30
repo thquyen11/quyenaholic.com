@@ -7,6 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "fontawesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const profilePic = require("./assets/profilePic.png");
+import { INPUT_EMAIL, INPUT_SUBJECT, INPUT_BODY } from '../../constans';
 
 interface StateProps {
   email: string,
@@ -28,9 +29,12 @@ interface DispatchProps {
 
 const mapDispatchToProps = (dispatch: any): DispatchProps => {
   return {
-    updateEmailInput: (type: string, payload: string) => dispatch({ type: type, payload: payload }),
+    updateEmailInput: (type: string, payload: string) => {
+      console.log(type, payload);
+      dispatch({ type: type, payload: payload })
+    }
   };
-};
+}
 
 interface Props extends StateProps, DispatchProps {
 }
@@ -59,8 +63,10 @@ class LandingPage extends React.Component<Props> {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-    }).then((res: any) => res.json())
-      .then((data: any) => console.log(data))
+    }).then((res: any) => {
+      // TODO: popup window when email send ok
+      res.status === 200 ? console.log('email sent') : console.log('email send failed');
+    })
   }
 
   componentDidMount() {
@@ -182,15 +188,15 @@ class LandingPage extends React.Component<Props> {
               <h5>Contact</h5>
               <form>
                 <div className="form-group">
-                  <input type="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="Email" onChange={(event: any) => this.props.updateEmailInput('email', event.target.value)} />
+                  <input type="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="Email" onChange={(event: any) => this.props.updateEmailInput(INPUT_EMAIL, event.target.value)} required />
                 </div>
                 <div className="form-group">
-                  <input type="text" className="form-control" id="subject" placeholder="Subject" onChange={(event: any) => this.props.updateEmailInput('subject', event.target.value)} />
+                  <input type="text" className="form-control" id="subject" placeholder="Subject" onChange={(event: any) => this.props.updateEmailInput(INPUT_SUBJECT, event.target.value)} />
                 </div>
                 <div className="form-group">
-                  <textarea className="form-control" id="message" rows={3} onChange={(event: any) => this.props.updateEmailInput('body', event.target.value)} ></textarea>
+                  <textarea className="form-control" id="message" rows={3} onChange={(event: any) => this.props.updateEmailInput(INPUT_BODY, event.target.value)} required></textarea>
                 </div>
-                <button type="submit" className="btn btn-primary" onClick={(event: any) => this.sendEmail(event)}>Send message</button>
+                <input type="submit" className="btn btn-primary" onClick={(event: any) => this.sendEmail(event)} value="Send message" />
               </form>
             </div>
           </div>
