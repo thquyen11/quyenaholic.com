@@ -1,0 +1,68 @@
+body{
+  background-color: #413E3E !important;
+  background-size: contain;
+
+  .background-color-layer{
+    background-image: url('./assets/img-01.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    z-index: -1;
+    top: 0px;
+    opacity: .3;
+    width: 100%;
+    height: 100vh;
+    box-shadow: inset 0 -40px 60px 10px #413E3E;
+  }
+
+  main{
+    padding: 1rem 1rem;
+
+    header{
+      height: 50vh;
+      padding-top: 6rem;
+
+      div h1{
+        font-weight: 900;
+        font-size: 4rem;
+        color: white;
+      }
+
+      #introduction{
+        min-height: 4rem;
+        font-weight: 900;
+        font-size: 3rem;
+        color: white;
+      }
+
+      .social-network a{
+        margin-left: 20px;
+        margin-right: 20px;
+      }
+    }
+
+    .card{
+      padding: 30px 30px;
+      margin-top: 30px;
+
+      .card-body{
+        padding: 20px 30px;
+      }
+    }
+
+    #about-me-card img{
+      width: 100%;
+      border-radius: 50%;
+    }
+  }
+}
+
+footer div{
+  padding-top: 40px;
+  padding-bottom: 30px;
+
+  .social-network a{
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}

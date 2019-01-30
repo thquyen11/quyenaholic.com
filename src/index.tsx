@@ -7,9 +7,15 @@ import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import registerServiceWorker from './registerServiceWorker';
-import App from 'containers/App/cApp';
-import { sampleReducer } from 'containers/App/rApp';
-import './index.scss';
+import LandingPage from 'containers/LandingPage/LandingPage';
+import { EmailContact } from "./containers/LandingPage/rLandingPage";
+import * as WebFont from 'webfontloader';
+
+WebFont.load({
+  google: {
+    families: ['Roboto', 'sans-serif']
+  }
+});
 
 /**
  * This function provide the log on vscode/chrome console about previous/next state
@@ -22,7 +28,7 @@ const logger = createLogger();
  * * If store is not listed here, it's update state won't be transfered to child components
  */
 const rootReducers = combineReducers({
-  sampleReducer
+  EmailContact
 });
 
 /**
@@ -55,7 +61,7 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <Switch>
-        <Route exact path='/' component={App} />
+        <Route exact path='/' component={LandingPage} />
       </Switch>
     </BrowserRouter>
   </Provider>,
