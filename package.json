@@ -23,6 +23,7 @@
     "@types/webfontloader": "^1.6.29",
     "bootstrap": "^4.2.1",
     "d3": "^5.7.0",
+    "gh-pages": "^2.0.1",
     "marked": "^0.5.2",
     "node-sass": "^4.10.0",
     "npm": "^6.7.0",
