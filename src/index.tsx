@@ -9,7 +9,9 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import registerServiceWorker from './registerServiceWorker';
 import LandingPage from 'containers/LandingPage/LandingPage';
 import { EmailContact } from "./containers/LandingPage/rLandingPage";
+import { FXRate } from "./containers/FXculator/rFXculator";
 import * as WebFont from 'webfontloader';
+import FXculator from "containers/FXculator/FXculator";
 
 WebFont.load({
   google: {
@@ -28,7 +30,7 @@ const logger = createLogger();
  * * If store is not listed here, it's update state won't be transfered to child components
  */
 const rootReducers = combineReducers({
-  EmailContact
+  EmailContact, FXRate
 });
 
 /**
@@ -62,6 +64,7 @@ ReactDOM.render(
     <BrowserRouter>
       <Switch>
         <Route exact path='/' component={LandingPage} />
+        <Route exact path='/projects/fxculator' component={FXculator} />
       </Switch>
     </BrowserRouter>
   </Provider>,
