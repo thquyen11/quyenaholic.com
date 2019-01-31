@@ -10,7 +10,7 @@ import {
 const initialClock = {
 	sessionSetting: 30,
 	breakSetting: 5,
-	remainSeconds: 1200, //sessionSetting * 60
+	remainSeconds: 1800,
 	timeoutId: [] as number[],
 	isRun: false,
 	clockStatus: "session",

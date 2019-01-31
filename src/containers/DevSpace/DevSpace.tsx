@@ -59,7 +59,7 @@ class DevSpace extends React.Component<Props> {
     super(props);
   }
 
-  _onReady(event:any) {
+  _onReady(event: any) {
     // access to player in all event handlers via event.target
     event.target.pauseVideo();
   }
@@ -71,19 +71,19 @@ class DevSpace extends React.Component<Props> {
 
     return (
       <div className="DevSpace-container">
-        <div className="container col-md-6"><TomatoClock clockProps={this.props.clockProps} dispatchClockSetting={this.props.dispatchClockSetting}
-           updateRunStatus={this.props.updateRunStatus} dispatchRemainSeconds={this.props.dispatchRemainSeconds}
-           dispatchTimeoutId={this.props.dispatchTimeoutId} />
-        </div>
-        <br/>
         <div className="container col-md-6">
-          <QuotesBox quoteProps={this.props.quoteProps} dispatchQuotes={this.props.dispatchQuotes} />
-        </div>
-        <br/>
-        {/* Youtube player */}
-        <div className="container col-md-6">
-          <div className="embed-responsive embed-responsive-16by9" id="youtube-container">
-            <iframe className="embed-responsive-item" src="https://www.youtube.com/embed/vAKtNV8KcWg?controls=1&loop=1"></iframe>
+          <div className="container">
+            <TomatoClock clockProps={this.props.clockProps} dispatchClockSetting={this.props.dispatchClockSetting}
+              updateRunStatus={this.props.updateRunStatus} dispatchRemainSeconds={this.props.dispatchRemainSeconds}
+              dispatchTimeoutId={this.props.dispatchTimeoutId} />
+          </div>
+          <div className="container">
+            <QuotesBox quoteProps={this.props.quoteProps} dispatchQuotes={this.props.dispatchQuotes} />
+          </div>
+          <div className="container" id="youtube-container">
+            <div className="embed-responsive embed-responsive-16by9">
+              <iframe className="embed-responsive-item" src="https://www.youtube.com/embed/vAKtNV8KcWg?controls=1&loop=1"></iframe>
+            </div>
           </div>
         </div>
       </div>
