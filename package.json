@@ -17,6 +17,7 @@
     "@types/react-redux": "^6.0.9",
     "@types/react-router": "^4.4.1",
     "@types/react-router-dom": "^4.3.1",
+    "@types/react-youtube": "^7.6.0",
     "@types/redux-logger": "^3.0.6",
     "@types/topojson": "^3.2.1",
     "@types/webfontloader": "^1.6.29",

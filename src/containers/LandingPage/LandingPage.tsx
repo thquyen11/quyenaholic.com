@@ -88,35 +88,34 @@ class LandingPage extends React.Component<Props> {
      */
     const projects: any = [
       {
-        id: '0',
-        name: 'RoboBrain',
-        description: '',
-        year: '2018',
-        photo: '',
-        githubLink: '',
-        liveDemo: '',
+        id: "0",
+        name: "RoboBrain",
+        description: "",
+        year: "2018",
+        photo: "",
+        githubLink: "https://github.com/thquyen11/smartbrain.robofriend",
+        Link: "",
       },
       {
-        id: '1',
-        name: 'Devspace',
-        description: '',
-        year: '2019',
-        photo: '',
-        githubLink: '',
-        liveDemo: '',
+        id: "1",
+        name: "Devspace",
+        description: "",
+        year: "2019",
+        photo: "",
+        githubLink: "",
+        Link: "/projects/devspace",
       },
       {
-        id: '2',
-        name: 'FXculator',
-        description: '',
-        year: '2019',
-        photo: '',
-        githubLink: '',
-        liveDemo: '',
+        id: "2",
+        name: "FXculator",
+        description: "",
+        year: "2019",
+        photo: "",
+        githubLink: "",
+        Link: "/project/fxculator",
       },
     ];
 
-    console.log('email ', this.props.email);
     return (
       <div>
         <div className="background-color-layer"></div>

@@ -1,0 +1,33 @@
+main{
+    color: white;
+    background-color: black;
+}
+
+/* Tomato Clock */
+#clock-container{
+    height: 10rem;
+    width: 10rem;
+    border-radius: 50%;
+    border: 1px solid white;
+    padding-top: 3.3rem;
+    margin-bottom: 20px;
+}
+
+/* Quotes Box */
+#quote-box{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid white;
+    color: white;
+    background-color: black;
+}
+
+#buttons{
+    position: absolute;
+    bottom: 2rem;
+}
+
+#tweet-quote{
+    margin-right: 23rem;
+}

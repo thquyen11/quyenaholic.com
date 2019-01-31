@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="DevSpace.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <main>
+        <div class="container" id="tomato-clock">
+            <div class="row">
+                <div class="container col-sm-3 text-center" id="session">
+                    <h5>Session Length</h5>
+                    <div>
+                        <h5>20</h5>
+                    </div>
+                    <button type="button" class="btn btn-dark">-</button>
+                    <button type="button" class="btn btn-dark">+</button>
+                </div>
+                <div class="container col-sm-3 text-center" id="break">
+                    <h5>Break Length</h5>
+                    <div>
+                        <h5>20</h5>
+                    </div>
+                    <button type="button" class="btn btn-dark">-</button>
+                    <button type="button" class="btn btn-dark">+</button>
+                </div>
+            </div>
+            <div class="container col-md-6 text-center">
+                <h4>Work Session</h4>
+                <div class="container col-md-6" id="clock-container">
+                    <h1>20:00</h1>
+                </div>
+            </div>
+            <div class="container col-md-6 text-center">
+                <button type="button" class="btn btn-dark">Pause</button>
+                <button type="button" class="btn btn-dark">Stop</button>
+                <button type="button" class="btn btn-dark">Start</button>
+            </div>
+        </div>
+
+        <div class="container text-center">
+            <div class="container col-sm-6" id="quote-box">
+                <h3>Quote Content</h3>
+                <div class="text-right">
+                    <p>- Quote Author</p>
+                </div>
+                <a class="button mx-auto" id="tweet-quote" title="Tweet this quote!" target="_blank" href={tweeting}>
+                    <i class="fab fa-3x fa-twitter">Twitter</i>
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
