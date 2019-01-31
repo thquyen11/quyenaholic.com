@@ -7,11 +7,11 @@ import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import registerServiceWorker from './registerServiceWorker';
-import LandingPage from 'containers/LandingPage/LandingPage';
+import LandingPage from './containers/LandingPage/LandingPage';
 import { EmailContact } from "./containers/LandingPage/rLandingPage";
 import { Clock, QuotesBox } from "./containers/DevSpace/rDevSpace";
 import * as WebFont from 'webfontloader';
-import DevSpace from 'containers/DevSpace/DevSpace';
+import DevSpace from './containers/DevSpace/DevSpace';
 
 WebFont.load({
   google: {

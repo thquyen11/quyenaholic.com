@@ -2,9 +2,9 @@ import * as React from "react";
 import { connect } from "react-redux";
 import "./LandingPage.scss";
 import { generateDynamicSologan } from "./assets/dynamic_sologan";
-import ProjectCard from 'components/LandingPage/ProjectCard/ProjectCard';
+import ProjectCard from '../../components/LandingPage/ProjectCard/ProjectCard';
 import "bootstrap/dist/css/bootstrap.min.css";
-import "fontawesome";
+// import "fontawesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const profilePic = require("./assets/profilePic.png");
 import { INPUT_EMAIL, INPUT_SUBJECT, INPUT_BODY } from '../../constans';
@@ -73,7 +73,7 @@ class LandingPage extends React.Component<Props> {
     /**
      * Generate dynamic sologon on the header
      */
-    const node: HTMLElement = document.querySelector("#introduction");
+    const node: any = document.querySelector("#introduction");
     const sologan: any = [
       "A Financial Software Technical Analyst",
       "A Fullstack Web Developer",

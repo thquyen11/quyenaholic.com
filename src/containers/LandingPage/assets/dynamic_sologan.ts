@@ -13,7 +13,7 @@ const showText = (text:string, node:HTMLElement, index:number) => {
 
 const deleteText = (node: HTMLElement, index:number) => {
   if (index >= 0) {
-    node.textContent = node.textContent.slice(0, index);
+    node.textContent = node.textContent!.slice(0, index);
     return new Promise((resolve, reject) => {
       setTimeout(() => resolve(deleteText(node, --index)), 20);
     })
