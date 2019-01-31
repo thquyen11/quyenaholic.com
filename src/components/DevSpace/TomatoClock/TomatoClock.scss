@@ -1,8 +1,32 @@
-#clock-container{
-    height: 10rem;
-    width: 10rem;
-    border-radius: 50%;
+#tomato-clock{
     border: 1px solid white;
-    padding-top: 3.3rem;
-    margin-bottom: 20px;
+    padding: 10px 10px;
+    border-radius: 5px;
+
+    #clock-container{
+        height: 10rem;
+        width: 10rem;
+        border-radius: 50%;
+        border: 3px solid white;
+        padding-top: 3.3rem;
+        margin-bottom: 20px;
+    }
+
+    button{
+        margin: 5px 5px;
+    }
+
+    button #start{
+        background-color: #387eed;
+    }
+
+    #session-decrease,
+    #session-increase,
+    #break-decrease,
+    #break-increase{
+        text-align: center;
+        width: 40px;
+        height: 40px;
+    }
 }
+

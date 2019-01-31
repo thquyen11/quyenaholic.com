@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom'
 import "./ProjectCard.scss";
 
 interface IProjectCard {
@@ -22,13 +23,15 @@ class ProjectCard extends React.Component<IProjectCard> {
           <a href={project.githubLink} target="blank">
             <button type="button" className="btn btn-dark"><p>GitHub</p></button>
           </a>
-          <a href={project.liveDemo} target="blank">
-            <button type="button" className="btn btn-dark"><p>Live Demo</p></button>
-          </a>
-        </p>
+          {project.Link !== "" ?
+            <Link to={project.Link}>
+              <button type="button" className="btn btn-dark"><p>LiveDemo</p></button>
+            </Link>
+            : <button type="button" className="btn btn-secondary"><p>LiveDemo</p></button>
+          }
+          </p>
       </div>
-    )
-  }
-}
-
+        )
+      }
+    }
 export default ProjectCard;
