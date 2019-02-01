@@ -1,73 +1,60 @@
-/* *{
-    border: 1px solid red;
-} */
-
 #FXculator-container{
     min-width: 360px;
     min-height: 620px;
     background-color: #3F4A58;
-    /* background-color: #3A4655; */
     padding: 1px 1px;
-    /* border: 2px solid white; */
     border-radius: 5px;
+
+    #screen{
+        margin-top: 20px;
+        margin-bottom: 20px;
+        font-size: 14px;
+        font-weight: 500;
+
+        .row{
+            margin: 10px 0;
+            color: white;
+            min-height: 20px;
+        }
+
+        .amount{
+            background-color: white;
+            color: black;
+            border-radius: 2px;
+        }
+    }
+
+    #keys{
+        position: absolute;
+        padding: 1px 1px;
+        bottom: 5px;
+
+        .container{
+            padding: 0px 0px;
+        }
+
+        button{
+            min-width: 85px;
+            min-height: 90px;
+            margin: 1px 1px;
+            border-radius: 1px;
+            background-color: #374352;
+            font-size: 22px;
+        }
+        
+        #clear{
+            color: #ff6b3e;
+        }
+        
+        #calculator{
+            background-color: #4c5466;
+            color: #ff6b3e;
+        }
+    }
 }
 
-#FXculator-container #screen{
-    /* border: 1px solid white;
-    border-radius: 5px; */
-    padding: 10px 5px;
-    margin: 20px 10px;
-    /* font-size: 12px; */
-}
 
-#FXculator-container #screen .row{
-    margin: 10px 5px;
-    color: white;
-    min-height: 35px;
-}
 
-#FXculator-container #screen .amount{
-    background-color: white;
-    color: black;
-    border-radius: 2px;
-    /*on select*/
-    /* background-color: #4C5466;
-    color: white; */
-}
 
-/* #FXculator-container #screen .amount:active{
-    background-color: white;
-    color: black;
-    border-radius: 2px;
-    border: 4px inset #a4a8ad;
-} */
 
-#FXculator-container #keys{
-    position: absolute;
-    padding: 1px 1px;
-    bottom: 5px;
-}
 
-#FXculator-container #keys .container{
-    padding: 0px 0px;
-}
-
-#FXculator-container #keys Button{
-    min-width: 85px;
-    min-height: 90px;
-    margin: 1px 1px;
-    /* border: 1px solid red; */
-    border-radius: 1px;
-    background-color: #374352;
-    /* font-weight: bold; */
-    font-size: 22px;
-}
-
-#FXculator-container #keys #clear{
-    color: #ff6b3e;
-}
-
-#FXculator-container #keys #calculator{
-    background-color: #4c5466;
-    color: #ff6b3e;
-}

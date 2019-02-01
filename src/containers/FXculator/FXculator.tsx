@@ -7,27 +7,23 @@ import { INPUT, FXRATE_UPDATE } from "../../constans";
 
 interface StateProps {
 	currencyList: any;
-	input: string;
-	activeOne: number;
 }
 
 const mapStateToProps = (state: any): StateProps => {
 	return {
 		currencyList: state.FXRate.currencyList,
-		input: state.FXRate.input,
-		activeOne: state.FXRate.activeOne,
 	};
 };
 
 interface DispatchProps {
 	dispatchInput: any,
-	dispatchFXRate:any,
+	dispatchFXRate: any,
 }
 
 const mapDispatchToProps = (dispatch: any): DispatchProps => {
 	return {
 		dispatchInput: (value: string) => dispatch({ type: INPUT, payload: value }),
-		dispatchFXRate: (updated:any)=> dispatch({ type: FXRATE_UPDATE, payload: updated })
+		dispatchFXRate: (updated: any) => dispatch({ type: FXRATE_UPDATE, payload: updated })
 	};
 }
 
@@ -45,13 +41,23 @@ class FXculator extends React.Component<Props> {
 		super(props);
 	}
 
-	componentDidMount() {
+	componentWillMount(){
+		console.log('will mount');
+	}
+
+	componentDidMount(){
+		console.log('did mount');
+	}
+
+	componentWillUpdate(){
+		console.log('will update');
 	}
 
 	render() {
+		console.log(this.props.currencyList);
 		return (
 			<FXRate dispatchInput={this.props.dispatchInput} currencyList={this.props.currencyList}
-			dispatchFXRate={this.props.dispatchFXRate} />
+				dispatchFXRate={this.props.dispatchFXRate} />
 		);
 	}
 }
