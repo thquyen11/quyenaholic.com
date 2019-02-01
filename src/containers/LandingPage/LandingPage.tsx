@@ -4,9 +4,9 @@ import "./LandingPage.scss";
 import { generateDynamicSologan } from "./assets/dynamic_sologan";
 import ProjectCard from '../../components/LandingPage/ProjectCard/ProjectCard';
 import "bootstrap/dist/css/bootstrap.min.css";
-// import "fontawesome";
+import "../../fontawesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-const profilePic = require("./assets/profilePic.png");
+const profilePic = require("./assets/img/profilePic.png");
 import { INPUT_EMAIL, INPUT_SUBJECT, INPUT_BODY } from '../../constans';
 
 interface StateProps {
@@ -77,7 +77,7 @@ class LandingPage extends React.Component<Props> {
     const sologan: any = [
       "A Financial Software Technical Analyst",
       "A Fullstack Web Developer",
-      "And An Enthusiastic Learner",
+      "An Enthusiastic Learner",
     ];
     generateDynamicSologan(sologan, node);
   }
@@ -90,28 +90,28 @@ class LandingPage extends React.Component<Props> {
       {
         id: "0",
         name: "RoboBrain",
-        description: "",
+        description: "Funny Robo lists and Face Detection from photo",
         year: "2018",
-        photo: "",
-        githubLink: "https://github.com/thquyen11/smartbrain.robofriend",
+        photo: "./assets/img/RoboBrain.png",
+        githubLink: "https://github.com/thquyen11/RoboBrain",
         Link: "",
       },
       {
         id: "1",
         name: "Devspace",
-        description: "",
+        description: "My workspace with Pomodoro clock, music and popular quotes",
         year: "2019",
-        photo: "",
-        githubLink: "",
+        photo: "./assets/img/DevSpace.jpg",
+        githubLink: "https://github.com/thquyen11/thquyen11.github.io/tree/master/src/containers/DevSpace",
         Link: "/projects/devspace",
       },
       {
         id: "2",
         name: "FXculator",
-        description: "",
+        description: "Up-to-date money exchange rate and historical graph",
         year: "2019",
         photo: "",
-        githubLink: "",
+        githubLink: "https://github.com/thquyen11/thquyen11.github.io/tree/master/src/containers/FXculator",
         Link: "/project/fxculator",
       },
     ];
@@ -195,7 +195,7 @@ class LandingPage extends React.Component<Props> {
                 <div className="form-group">
                   <textarea className="form-control" id="message" rows={3} onChange={(event: any) => this.props.updateEmailInput(INPUT_BODY, event.target.value)} required></textarea>
                 </div>
-                <input type="submit" className="btn btn-primary" onClick={(event: any) => this.sendEmail(event)} value="Send message" />
+                <input type="submit" className="btn btn-dark" onClick={(event: any) => this.sendEmail(event)} value="Send message" />
               </form>
             </div>
           </div>
@@ -203,7 +203,7 @@ class LandingPage extends React.Component<Props> {
 
         <footer>
           <div className="container text-center">
-            <p>All right reserved. Design by Quyen Ho</p>
+            <p>All right reserved. Designed by QuyenHo</p>
             <p className="social-network">
               <a href="https://www.linkedin.com/in/quyen-ho-99173ba3/" target="blank">
                 <FontAwesomeIcon icon={["fab", "linkedin-in"]} size="2x" />

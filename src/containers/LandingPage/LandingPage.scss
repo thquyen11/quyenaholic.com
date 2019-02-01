@@ -1,18 +1,18 @@
 body{
-  background-color: #413E3E !important;
+  background-color: #030303 !important;
   background-size: contain;
 
   .background-color-layer{
-    background-image: url('./assets/img-01.jpg');
+    background-image: url('./assets/img/background-img.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     position: absolute;
     z-index: -1;
     top: 0px;
-    opacity: .3;
+    opacity: .9;
     width: 100%;
     height: 100vh;
-    box-shadow: inset 0 -40px 60px 10px #413E3E;
+    box-shadow: inset 0 -40px 60px 10px #030303;
   }
 
   main{
@@ -20,7 +20,8 @@ body{
 
     header{
       height: 50vh;
-      padding-top: 6rem;
+      padding-top: 4rem;
+      margin-bottom: 90px;
 
       div h1{
         font-weight: 900;
@@ -60,6 +61,8 @@ body{
 footer div{
   padding-top: 40px;
   padding-bottom: 30px;
+  color: white;
+  font-weight: bold;
 
   .social-network a{
     margin-left: 20px;
