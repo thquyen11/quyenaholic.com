@@ -9,6 +9,8 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import registerServiceWorker from './registerServiceWorker';
 import LandingPage from './containers/LandingPage/LandingPage';
 import { EmailContact } from "./containers/LandingPage/rLandingPage";
+import { FXRate, Calculator } from "./containers/FXculator/rFXculator";
+import FXculator from "containers/FXculator/FXculator";
 import { Clock, QuotesBox } from "./containers/DevSpace/rDevSpace";
 import * as WebFont from 'webfontloader';
 import DevSpace from './containers/DevSpace/DevSpace';
@@ -30,6 +32,7 @@ const logger = createLogger();
  * * If store is not listed here, it's update state won't be transfered to child components
  */
 const rootReducers = combineReducers({
+  FXRate, Calculator,
   EmailContact, Clock, QuotesBox,
 });
 
@@ -64,6 +67,7 @@ ReactDOM.render(
     <BrowserRouter>
       <Switch>
         <Route exact path='/' component={LandingPage} />
+        <Route exact path='/projects/fxculator' component={FXculator} />
         <Route exact path='/projects/devspace' component={DevSpace} />
       </Switch>
     </BrowserRouter>

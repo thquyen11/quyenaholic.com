@@ -1,0 +1,58 @@
+#fxcualtor-calculator{
+  min-width: 360px;
+  min-height: 620px;
+  background-color: #3F4A58;
+  padding: 1px 1px;
+  border-radius: 5px;
+
+  #screen{
+      margin-top: 20px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      font-weight: 500;
+
+      .container{
+          margin: 10px 0;
+          background-color: white;
+          color: black;
+          border-radius: 2px;
+          height: 25px;
+      }
+
+      #input{
+          height: 35px;
+      }
+  }
+
+  #keys{
+      position: absolute;
+      padding: 1px 1px;
+      bottom: 5px;
+
+      .container{
+          padding: 0px 0px;
+      }
+
+      button{
+          min-width: 85px;
+          min-height: 90px;
+          margin: 1px 1px;
+          border-radius: 1px;
+          background-color: #374352;
+          font-size: 22px;
+      }
+      #clear{
+          color: #ff6b3e;
+      }
+      #exchange{
+          background-color: #4c5466;
+          color: #ff6b3e;
+      }
+  }
+}
+
+
+
+
+
+
