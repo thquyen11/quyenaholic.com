@@ -112,7 +112,7 @@ class LandingPage extends React.Component<Props> {
         year: '2019',
         photo: '',
         githubLink: '',
-        liveDemo: '',
+        liveDemo: 'projects/fxculator',
       },
     ];
 

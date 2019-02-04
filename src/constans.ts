@@ -9,4 +9,7 @@ export const INPUT_BODY = "INPUT_BODY";
  * FXculator
  */
 export const INPUT = "INPUT";
-export const FXRATE_UPDATE = "FXRATE_UPDATE";
+export const FX_RATE = "FX_RATE";
+export const FX_AMOUNT = "FX_AMOUNT";
+export const OUTPUT_CALCULATOR = "OUTPUT_CALCULATOR";
+export const INPUT_CALCULATOR = "INPUT_CALCULATOR";

@@ -9,7 +9,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import registerServiceWorker from './registerServiceWorker';
 import LandingPage from 'containers/LandingPage/LandingPage';
 import { EmailContact } from "./containers/LandingPage/rLandingPage";
-import { FXRate } from "./containers/FXculator/rFXculator";
+import { FXRate, Calculator } from "./containers/FXculator/rFXculator";
 import * as WebFont from 'webfontloader';
 import FXculator from "containers/FXculator/FXculator";
 
@@ -30,7 +30,8 @@ const logger = createLogger();
  * * If store is not listed here, it's update state won't be transfered to child components
  */
 const rootReducers = combineReducers({
-  EmailContact, FXRate
+  EmailContact,
+  FXRate, Calculator,
 });
 
 /**

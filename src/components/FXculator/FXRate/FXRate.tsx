@@ -1,12 +1,17 @@
 import * as React from "react";
 import "./FXRate.scss";
+import { Link } from "react-router-dom";
+import inputHandler from "../CalculatorInputHandle";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { FX_AMOUNT, FX_RATE } from "../../../constans";
+import "fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface IFXRate {
   currencyList: any;
-  // activeOne: number;
-  dispatchInput: any,
-  dispatchFXRate: any,
+  fxRates: number[];
+  dispatchInput: any;
+  dispatchFX: any;
 }
 
 /**
@@ -20,44 +25,57 @@ class FXRate extends React.Component<IFXRate> {
     super(props);
   }
 
-  updateFXRate = (currencyList: any) => {
-    let currencies = currencyList.map((data: any, index: number) => {
+  private updateFXRates = () => {
+    let currencySymbol = this.props.currencyList.map((data: any, index: number) => {
       return data.currency;
     })
 
-    // fetch the fx rate API
     const ACCESS_API: string = "6109904b3d6580717ada26c59fdc6e4a";
-    fetch(`http://data.fixer.io/api/latest?access_key=${ACCESS_API}&symbols=${currencies[0]},${currencies[1]},${currencies[2]},${currencies[3]}`)
+    fetch(`http://data.fixer.io/api/latest?access_key=${ACCESS_API}&symbols=${currencySymbol[0]},${currencySymbol[1]},${currencySymbol[2]},${currencySymbol[3]}`)
       .then((res: any) => res.json())
       .then((data: any) => {
-        const fxRates: any = [];
+        const fxRates: number[] = [];
         for (let key in data.rates) {
-          fxRates.push(data.rates[key]);
+          fxRates.push(parseFloat(data.rates[key]));
         }
-        // Calculate FX rate of each currencies
-        for (let i: number = 1; i < currencyList.length; i++) {
-          const convert = parseFloat(currencyList[0].amount) * (parseFloat(fxRates[i])/parseFloat(fxRates[0]));
-          currencyList[i].amount = (Math.round(convert*10000)/10000).toString();
-        }
-        this.props.dispatchFXRate(currencyList);
+        this.props.dispatchFX({ type: FX_RATE, payload: fxRates });
       })
       .catch((err: any) => {
         console.log(err);
       })
   }
 
-  onInput = (event: any) => {
-    // input base currency amount
-    if (this.props.currencyList[0].amount === "0" && event.target.value === "0") {
-      console.log("Base amount is 0 now, should not input more 0 lol");
-    } else {
-      const { currencyList } = this.props;
-      this.props.dispatchInput(event.target.value);
-
-      // calculate FX exchange rate
-      console.log(currencyList)
-      this.updateFXRate(currencyList);
+  /**
+   * calculate FX converted amount based on FXRates
+   * then store in currencyList to appear on screen
+   */
+  private updateFXAmount(currencyList: any[]) {
+    for (let i: number = 1; i < currencyList.length; i++) {
+      const convertedAmount = parseFloat(currencyList[0].amount) * this.props.fxRates[i] / this.props.fxRates[0];
+      currencyList[i].amount = (Math.round(convertedAmount * 100) / 100).toString();
     }
+    this.props.dispatchFX({ type: FX_AMOUNT, payload: currencyList });
+  }
+
+  private onInput = (userInput: string) => {
+    let { currencyList } = this.props;
+    console.log(currencyList[0].amount);
+    const input: string = inputHandler(userInput, currencyList[0].amount, 24);
+
+    if (input !== "") {
+      this.props.dispatchInput(input);
+      this.updateFXAmount(currencyList);
+    }
+  }
+
+  private clickUndo = () => {
+    const btnUndo: any = document.querySelector("#undo");
+    this.onInput(btnUndo.value);
+  }
+
+  componentDidMount() {
+    // TODO
+    // this.updateFXRates();
   }
 
   render() {
@@ -92,28 +110,37 @@ class FXRate extends React.Component<IFXRate> {
         </div>
         <div className="container text-center mt-5" id="keys">
           <div className="row justify-content-center">
-            <button className="btn btn-dark" value="clear" id="clear" onClick={this.onInput}>C</button>
-            <button className="btn btn-dark" value="7" id="seven" onClick={this.onInput}>7</button>
-            <button className="btn btn-dark" value="8" id="eight" onClick={this.onInput}>8</button>
-            <button className="btn btn-dark" value="9" id="nine" onClick={this.onInput}>9</button>
+            <button className="btn btn-dark" value="clear" id="clear" onClick={(e: any) => this.onInput(e.target.value)}>C</button>
+            <button className="btn btn-dark" value="7" id="seven" onClick={(e: any) => this.onInput(e.target.value)}>7</button>
+            <button className="btn btn-dark" value="8" id="eight" onClick={(e: any) => this.onInput(e.target.value)}>8</button>
+            <button className="btn btn-dark" value="9" id="nine" onClick={(e: any) => this.onInput(e.target.value)}>9</button>
           </div>
           <div className="row justify-content-center">
-            <button className="btn btn-dark" value="calculator" id="calculator" onClick={this.onInput}>Cal</button>
-            <button className="btn btn-dark" value="4" id="four" onClick={this.onInput}>4</button>
-            <button className="btn btn-dark" value="5" id="five" onClick={this.onInput}>5</button>
-            <button className="btn btn-dark" value="6" id="six" onClick={this.onInput}>6</button>
+            <Link to="/projects/fxculator/calculator">
+              <button className="btn btn-dark" value="calculator" id="calculator">
+                <FontAwesomeIcon icon={["fas", "calculator"]} size="1x" />
+              </button>
+            </Link>
+            <button className="btn btn-dark" value="4" id="four" onClick={(e: any) => this.onInput(e.target.value)}>4</button>
+            <button className="btn btn-dark" value="5" id="five" onClick={(e: any) => this.onInput(e.target.value)}>5</button>
+            <button className="btn btn-dark" value="6" id="six" onClick={(e: any) => this.onInput(e.target.value)}>6</button>
           </div>
           <div className="row justify-content-center">
             <button className="btn btn-dark" value="" id=""></button>
-            <button className="btn btn-dark" value="1" id="one" onClick={this.onInput}>1</button>
-            <button className="btn btn-dark" value="2" id="two" onClick={this.onInput}>2</button>
-            <button className="btn btn-dark" value="3" id="three" onClick={this.onInput}>3</button>
+            <button className="btn btn-dark" value="1" id="one" onClick={(e: any) => this.onInput(e.target.value)}>1</button>
+            <button className="btn btn-dark" value="2" id="two" onClick={(e: any) => this.onInput(e.target.value)}>2</button>
+            <button className="btn btn-dark" value="3" id="three" onClick={(e: any) => this.onInput(e.target.value)}>3</button>
           </div>
           <div className="row justify-content-center">
-            <button className="btn btn-dark" value="" id=""></button>
-            <button className="btn btn-dark" value="0" id="zero" onClick={this.onInput}>0</button>
-            <button className="btn btn-dark" value="." id="decimal" onClick={this.onInput}>.</button>
-            <button className="btn btn-dark" value="undo" id="undo" onClick={this.onInput}>Undo</button>
+
+            <button className="btn btn-dark" value="refresh" id="refresh" onClick={() => this.updateFXRates()}>
+              <FontAwesomeIcon icon={["fas", "sync-alt"]} size="1x" />
+            </button>
+            <button className="btn btn-dark" value="0" id="zero" onClick={(e: any) => this.onInput(e.target.value)}>0</button>
+            <button className="btn btn-dark" value="." id="decimal" onClick={(e: any) => this.onInput(e.target.value)}>.</button>
+            <button className="btn btn-dark" value="undo" id="undo" onClick={(e: any) => this.clickUndo()}>
+              <FontAwesomeIcon icon={["fas", "backspace"]} size="1x" />
+            </button>
           </div>
         </div>
       </div>

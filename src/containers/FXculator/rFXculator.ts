@@ -1,4 +1,4 @@
-import { INPUT, FXRATE_UPDATE } from "../../constans";
+import { INPUT, FX_RATE, FX_AMOUNT, INPUT_CALCULATOR, OUTPUT_CALCULATOR } from "../../constans";
 
 const initialFXRate = {
   currencyList: [
@@ -19,37 +19,36 @@ const initialFXRate = {
       amount: "0",
     },
   ],
+  fxRates: [] as number[],
 }
 
 export const FXRate = (state: any = initialFXRate, action: any = {}) => {
   switch (action.type) {
-    case FXRATE_UPDATE:
+    case FX_RATE:
+      return Object.assign({}, state, { fxRates: action.payload });
+    case FX_AMOUNT:
       return Object.assign({}, state, { currencyList: action.payload });
     case INPUT:
-      if (action.payload === "clear") {
-        const temp = state.currencyList.map((currency: any) => {
-          currency.amount = "0";
-          return currency;
-        })
-        return Object.assign({}, state, { currencyList: temp });;
-      } else if (action.payload === "undo") {
-        const temp = new Array(...state.currencyList);
-        console.log('temp ', temp);
-        if (temp[0].amount.length === 1) {
-          temp[0].amount = "0";
-        } else {
-          temp[0].amount=temp[0].amount.slice(0, temp[0].amount.length - 1);
-        }
-        return Object.assign({}, state, { currencyList: temp });;
-      } else {
-        const temp = new Array(...state.currencyList);
-        if (state.currencyList[0].amount === "0") {
-          temp[0].amount = action.payload;
-        } else {
-          temp[0].amount += action.payload;
-        }
-        return Object.assign({}, state, { currencyList: temp });
-      }
+      const temp:any = state.currencyList.slice(0);
+      temp[0].amount=action.payload;
+      return Object.assign({}, state, { currencyList: temp });
+    default:
+      return state;
+  }
+}
+
+
+const initialCalculator = {
+  input: "0",
+  outcome: "0",
+}
+
+export const Calculator = (state: any = initialCalculator, action: any = {}) => {
+  switch (action.type) {
+    case INPUT_CALCULATOR:
+      return Object.assign({}, state, { input: action.payload });
+    case OUTPUT_CALCULATOR:
+      return Object.assign({}, state, { outcome: action.payload });
     default:
       return state;
   }
