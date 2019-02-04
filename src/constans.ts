@@ -14,8 +14,9 @@ export const FX_AMOUNT = "FX_AMOUNT";
 export const OUTPUT_CALCULATOR = "OUTPUT_CALCULATOR";
 export const INPUT_CALCULATOR = "INPUT_CALCULATOR";
 
- * DevSpace
- */
+ /**
+  * DevSpace
+  */
 export const REMAIN_SECONDS = "REMAIN_SECONDS";
 export const TIMEOUT_ID = "TIMEOUT_ID";
 export const SESSION_INCREASE = "SESSION_INCREASE";

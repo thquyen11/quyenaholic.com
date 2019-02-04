@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import inputHandler from "../CalculatorInputHandle";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FX_AMOUNT, FX_RATE } from "../../../constans";
-import "fontawesome";
+import "../../../fontawesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface IFXRate {

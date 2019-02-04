@@ -1,6 +1,6 @@
 import * as React from "react";
 import "./Calculator.scss";
-import "fontawesome";
+import "../../../fontawesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import inputHandler from "../CalculatorInputHandle";

@@ -10,7 +10,7 @@ import registerServiceWorker from './registerServiceWorker';
 import LandingPage from './containers/LandingPage/LandingPage';
 import { EmailContact } from "./containers/LandingPage/rLandingPage";
 import { FXRate, Calculator } from "./containers/FXculator/rFXculator";
-import FXculator from "containers/FXculator/FXculator";
+import FXculator from "./containers/FXculator/FXculator";
 import { Clock, QuotesBox } from "./containers/DevSpace/rDevSpace";
 import * as WebFont from 'webfontloader';
 import DevSpace from './containers/DevSpace/DevSpace';

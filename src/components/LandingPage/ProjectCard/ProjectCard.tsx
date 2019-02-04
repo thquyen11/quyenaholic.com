@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom'
 import "./ProjectCard.scss";
-import { Link } from 'react-router-dom';
 
 interface IProjectCard {
   project: any
