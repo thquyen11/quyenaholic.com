@@ -4,39 +4,51 @@ import "./FXculator.scss";
 import FXRate from "../../components/FXculator/FXRate/FXRate";
 import Calculator from "../../components/FXculator/Calculator/Calculator";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { INPUT, INPUT_CALCULATOR, OUTPUT_CALCULATOR } from "../../constans";
+import { INPUT, INPUT_CALCULATOR, OUTPUT_CALCULATOR, CURRENCY_TO_UPDATE, UPDATE_ALL_CURRENCY_LIST, SELECT_NEW_CURRENCY } from "../../constans";
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 interface StateProps {
-	currencyList: any;
-	fxRates: number[];
-	input: string;
-	outcome: string;
+  currencyList: any;
+  currencyToUpdate: number;
+  allCurrencyList: any[];
+  fxRates: number[];
+  allRates: any;
+  input: string;
+  outcome: string;
 }
 
 const mapStateToProps = (state: any): StateProps => {
-	return {
-		currencyList: state.FXRate.currencyList,
-		fxRates: state.FXRate.fxRates,
-		input: state.Calculator.input,
-		outcome: state.Calculator.outcome,
-	};
+  return {
+    currencyList: state.FXRate.currencyList,
+    currencyToUpdate: state.FXRate.currencyToUpdate,
+    allCurrencyList: state.FXRate.allCurrencyList,
+    fxRates: state.FXRate.fxRates,
+    allRates: state.FXRate.allRates,
+    input: state.Calculator.input,
+    outcome: state.Calculator.outcome,
+  };
 };
 
 interface DispatchProps {
-	dispatchInput: any,
-	dispatchFX: any,
-	sendInput: any,
-	sendOutput: any,
+  dispatchInput: any,
+  dispatchcurrencyToUpdate: any,
+  udpateAllCurrencyList: any,
+  dispatchSelectNewCurrency:any,
+  dispatchFX: any,
+  sendInput: any,
+  sendOutput: any,
 }
 
 const mapDispatchToProps = (dispatch: any): DispatchProps => {
-	return {
-		dispatchInput: (value: string) => dispatch({ type: INPUT, payload: value }),
-		dispatchFX: (action: any) => dispatch({ type: action.type, payload: action.payload }),
-		sendInput: (input:string) => dispatch({ type: INPUT_CALCULATOR, payload: input }),
-		sendOutput: (outcome:string) => dispatch({ type: OUTPUT_CALCULATOR, payload: outcome }),
-	};
+  return {
+    dispatchInput: (value: string) => dispatch({ type: INPUT, payload: value }),
+    dispatchcurrencyToUpdate: (id:number) => dispatch({ type: CURRENCY_TO_UPDATE, payload: id }),
+    udpateAllCurrencyList: (list:any)=> dispatch({ type: UPDATE_ALL_CURRENCY_LIST, payload: list }),
+    dispatchSelectNewCurrency: (symbol:any)=> dispatch({ type: SELECT_NEW_CURRENCY, payload: symbol }),
+    dispatchFX: (action: any) => dispatch({ type: action.type, payload: action.payload }),
+    sendInput: (input: string) => dispatch({ type: INPUT_CALCULATOR, payload: input }),
+    sendOutput: (outcome: string) => dispatch({ type: OUTPUT_CALCULATOR, payload: outcome }),
+  };
 }
 
 interface Props extends StateProps, DispatchProps {
@@ -49,28 +61,29 @@ interface Props extends StateProps, DispatchProps {
  * componentDidMount(): run only 1 time after Reat component initial rendering
  */
 class FXculator extends React.Component<Props> {
-	constructor(props: Props) {
-		super(props);
-	}
+  constructor(props: Props) {
+    super(props);
+  }
 
-	render() {
-		console.log('FXculator rendering');
-		return (
-			<BrowserRouter>
-				<Switch>
-					<Route exact path="/projects/fxculator" render={() => {
-						return <FXRate dispatchInput={this.props.dispatchInput} currencyList={this.props.currencyList}
-							fxRates={this.props.fxRates} dispatchFX={this.props.dispatchFX} />
-					}} />
-					<Route exact path="/projects/fxculator/calculator" render={() => {
-						return <Calculator input={this.props.input} outcome={this.props.outcome} sendInput={this.props.sendInput}
-						sendOutput={this.props.sendOutput} />
-					}} />
-				</Switch>
-			</BrowserRouter>
+  render() {
+    console.log('FXculator rendering');
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/projects/fxculator" render={() => {
+            return <FXRate dispatchInput={this.props.dispatchInput} currencyList={this.props.currencyList}
+              fxRates={this.props.fxRates} allRates={this.props.allRates} dispatchFX={this.props.dispatchFX} currencyToUpdate={this.props.currencyToUpdate} allCurrencyList={this.props.allCurrencyList}
+              dispatchcurrencyToUpdate={this.props.dispatchcurrencyToUpdate} udpateAllCurrencyList={this.props.udpateAllCurrencyList} dispatchSelectNewCurrency={this.props.dispatchSelectNewCurrency}/>
+          }} />
+          <Route exact path="/projects/fxculator/calculator" render={() => {
+            return <Calculator input={this.props.input} outcome={this.props.outcome} sendInput={this.props.sendInput}
+              sendOutput={this.props.sendOutput} />
+          }} />
+        </Switch>
+      </BrowserRouter>
 
-		);
-	}
+    );
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(FXculator);
