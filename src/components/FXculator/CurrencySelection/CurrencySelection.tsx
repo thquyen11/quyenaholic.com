@@ -7,9 +7,13 @@ interface ICurrencySelection {
   currencyToUpdate: number;
   allCurrencyList: any[];
   allRates: any;
-  updateFXRates: any;
+  // fxRates: any;
+  currencyList: any;
+  updateExistingRate: any;
+  // updateFXAmount: any;
   udpateAllCurrencyList: any;
   dispatchSelectNewCurrency: any;
+  dispatchFX: any;
   toggleSelectBox: any;
 }
 
@@ -35,10 +39,10 @@ class CurrencySelection extends React.Component<ICurrencySelection> {
     try {
       const previousNode: Element = e.target.previousSibling;
       previousNode.children[0].textContent;
-      const symbol: string|null = previousNode.children[0].textContent;
+      const symbol: string | null = previousNode.children[0].textContent;
       if (symbol !== null) {
         this.props.dispatchSelectNewCurrency(symbol);
-        this.props.updateFXRates(this.props.allRates);
+        this.props.updateExistingRate(this.props.allRates, this.props.currencyList, this.props.dispatchFX);
         this.props.toggleSelectBox("hidden");
         this.props.udpateAllCurrencyList(currencyList);
       }
@@ -46,6 +50,10 @@ class CurrencySelection extends React.Component<ICurrencySelection> {
     catch (err) {
       console.log(err);
     }
+  }
+
+  private closeWindow=()=>{
+    this.props.toggleSelectBox("hidden");
   }
 
   componentWillMount() {
@@ -68,8 +76,13 @@ class CurrencySelection extends React.Component<ICurrencySelection> {
 
     return (
       <div className="container col-11" id="currency-selection">
-        <div className="input-group mb-3 col-10" id="search-box">
-          <input type="text" className="form-control" onChange={this.filterCurrencyList} placeholder="Currency" aria-label="search-box" aria-describedby="basic-addon1" autoFocus />
+        <div className="row">
+          <div className="input-group mb-3 col-10" id="search-box">
+            <input type="text" className="form-control" onChange={this.filterCurrencyList} placeholder="Currency" aria-label="search-box" aria-describedby="basic-addon1" autoFocus />
+          </div>
+          <button type="button" className="close" id="btnClose" onClick={this.closeWindow} aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
         <div className="container">
           {renderCurrencyList}

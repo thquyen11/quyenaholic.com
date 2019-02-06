@@ -8,14 +8,13 @@ import { FX_AMOUNT, FX_RATE, FX_ALL_RATES } from "../../../constans";
 import "../../../fontawesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { currencyList } from "../../../components/FXculator/CurrencySelection/assets/CurrencyList";
-import {FXRATES} from "../../../temp/FXRates";
 
 interface IFXRate {
   currencyList: any;
   currencyToUpdate: number;
   allCurrencyList: any[];
   udpateAllCurrencyList: any;
-  fxRates: number[];
+  fxRates : number[];
   allRates: {};
   dispatchInput: any;
   dispatchFX: any;
@@ -34,13 +33,32 @@ class FXRate extends React.Component<IFXRate> {
     super(props);
   }
 
-  private fetchAllRates = () => {
-    const symbols: string = (currencyList.map((data: any) => data.symbol)).join(",");
-    console.log(symbols);
+  private saveRate=(storeName: string, rates: any, date:string)=>{
+    const todayRates:any = {};
+    todayRates[date] = rates;
+    localStorage.setItem(storeName, todayRates);
+    console.log(localStorage.getItem(storeName));
+  }
 
-    // TODO correct this condition to load from file
-    let allRates: any = {};
-    if (symbols === "") {
+  private getExistingRate=(storeName: string, date:string):any=>{
+    if(storeName in localStorage){
+      const rates:any = localStorage.getItem(storeName);
+      return date in rates ? rates[date] : {}
+    } else{
+      return {};
+    }
+  }
+
+  private fetchAllRates = () => {
+    const allRates:any = {};
+    const today:string = (new Date()).toISOString().slice(0, 10);
+    const quotes:any = this.getExistingRate("fxRates", today);
+    console.log(quotes);
+
+    if(quotes === {}){
+      console.log('get fx rate from api');
+
+      const symbols: string = (currencyList.map((data: any) => data.symbol)).join(",");
       const ACCESS_API: string = "5f6996e69e469cf7e5352ab2a7f2b244";
       fetch(`http://data.fixer.io/api/live?access_key=${ACCESS_API}&symbols=${symbols}`)
         .then((res: any) => res.json())
@@ -49,41 +67,78 @@ class FXRate extends React.Component<IFXRate> {
             allRates[key.substring(3)] = parseFloat(data.quotes[key]);
           }
           this.props.dispatchFX({ type: FX_ALL_RATES, payload: allRates });
-          this.updateFXRates(allRates);
+          this.updateExistingRate (allRates, this.props.currencyList, this.props.dispatchFX);
+              this.saveRate("fxRates", allRates, today);
         })
         .catch((err: any) => {
           console.log(err);
         })
-    } else {
-      const quotes:any = FXRATES["2019-02-05"];
+    } else{
+      console.log('load from existing fx rate');
+
       for (let key in quotes) {
         allRates[key.substring(3)] = parseFloat(quotes[key]);
       }
       this.props.dispatchFX({ type: FX_ALL_RATES, payload: allRates });
-      this.updateFXRates(allRates);
+      this.updateExistingRate (allRates, this.props.currencyList, this.props.dispatchFX);
     }
+
+
+    // TODO correct this condition to load from file
+    // let allRates: any = {};
+    // if (symbols === "") {
+    //   console.log('get fx rate from api');
+    //   const ACCESS_API: string = "5f6996e69e469cf7e5352ab2a7f2b244";
+    //   fetch(`http://data.fixer.io/api/live?access_key=${ACCESS_API}&symbols=${symbols}`)
+    //     .then((res: any) => res.json())
+    //     .then((data: any) => {
+    //       for (let key in data.quotes) {
+    //         allRates[key.substring(3)] = parseFloat(data.quotes[key]);
+    //       }
+    //       this.props.dispatchFX({ type: FX_ALL_RATES, payload: allRates });
+    //       this.updateExistingRate (allRates, this.props.currencyList, this.props.dispatchFX);
+    //     })
+    //     .catch((err: any) => {
+    //       console.log(err);
+    //     })
+    // } else {
+    //   console.log('get fx rate from file');
+    //   const quotes:any = existingRate ["2019-02-05"];
+    //   for (let key in quotes) {
+    //     allRates[key.substring(3)] = parseFloat(quotes[key]);
+    //   }
+    //   this.props.dispatchFX({ type: FX_ALL_RATES, payload: allRates });
+    //   this.updateExistingRate (allRates, this.props.currencyList, this.props.dispatchFX);
+    // }
   }
 
-  private updateFXRates = (allRates: any) => {
-    const fxRates: number[] = [];
-    (this.props.currencyList.map((data: any, index: number) => data.currency)).map((currency: string) => {
+  private updateExistingRate  = (allRates: any, currencyList: any, dispatch:any) => {
+    console.log('updateExistingRate  currencyList ', currencyList);
+    const existingRate : number[] = [];
+    (currencyList.map((data: any, index: number) => data.currency)).map((currency: string) => {
       const find: number = allRates[currency];
-      if (find !== undefined) fxRates.push(find);
+      if (find !== undefined) existingRate .push(find);
     })
-    console.log(fxRates);
-    this.props.dispatchFX({ type: FX_RATE, payload: fxRates });
+    console.log(existingRate );
+    dispatch({ type: FX_RATE, payload: existingRate  });
+
+    this.updateFXAmount(currencyList, this.props.fxRates , this.props.dispatchFX);
   }
 
   /**
-   * calculate FX converted amount based on FXRates
+   * calculate FX converted amount based on existingRate 
    * then store in currencyList to appear on screen
    */
-  private updateFXAmount(currencyList: any[]) {
+  private updateFXAmount(currencyList: any[], existingRate : any, dispatch:any) {
+    console.log('fxAmount existingRate  ', existingRate );
     for (let i: number = 1; i < currencyList.length; i++) {
-      const convertedAmount = parseFloat(currencyList[0].amount) * this.props.fxRates[i] / this.props.fxRates[0];
+      // base currency USD
+      // Calculation: If currencyList[0] = GBP and currencyList[i] = THB
+      // convertTHB amount =  GBP amount * USD/THB divide USD/GBP
+      const convertedAmount = parseFloat(currencyList[0].amount) * existingRate [i] / existingRate [0];
       currencyList[i].amount = (Math.round(convertedAmount * 100) / 100).toString();
     }
-    this.props.dispatchFX({ type: FX_AMOUNT, payload: currencyList });
+    dispatch({ type: FX_AMOUNT, payload: currencyList });
   }
 
   private onInput = (userInput: string) => {
@@ -93,7 +148,8 @@ class FXRate extends React.Component<IFXRate> {
 
     if (input !== "") {
       this.props.dispatchInput(input);
-      this.updateFXAmount(currencyList);
+      console.log('input fxRates  ', this.props.fxRates );
+      this.updateFXAmount(currencyList, this.props.fxRates , this.props.dispatchFX);
     }
   }
 
@@ -116,7 +172,9 @@ class FXRate extends React.Component<IFXRate> {
   }
 
   private selectCurrency = (e: any) => {
+    console.log(e.target);
     const id: number = parseInt(e.target.getAttribute("id"));
+    console.log('id ', id);
     try {
       this.props.dispatchcurrencyToUpdate(id);
       this.toggleSelectBox("visible");
@@ -125,7 +183,7 @@ class FXRate extends React.Component<IFXRate> {
     }
   }
 
-  // private writeFXRatesToFile = (rates: any) => {
+  // private writeexistingRate ToFile = (rates: any) => {
   //   fs.writeFile("../../../temp/fx-rates.txt", JSON.stringify(rates), (err: any) => {
   //     console.log(err)
   //   })
@@ -148,20 +206,20 @@ class FXRate extends React.Component<IFXRate> {
           </div>
           <div className="row">
             <div className="container col-2">Flag</div>
-            <div className="container col-2" id="1"><p>{currencyList[1].currency}</p></div>
-            <div className="amount col-6 text-right" id="1"><p>{currencyList[1].amount}</p></div>
+            <p className="container col-2" id="1" onClick={this.selectCurrency}>{currencyList[1].currency}</p>
+            <div className="amount col-6 text-right" id="1"><p>{currencyList[1].amount === "NaN" ? "0" : currencyList[1].amount}</p></div>
             <div className="container col-2">Graph</div>
           </div>
           <div className="row">
             <div className="container col-2">Flag</div>
-            <div className="container col-2" id="2"><p>{currencyList[2].currency}</p></div>
-            <div className="amount col-6 text-right" id="2"><p>{currencyList[2].amount}</p></div>
+            <p className="container col-2" id="2" onClick={this.selectCurrency}>{currencyList[2].currency}</p>
+            <div className="amount col-6 text-right" id="2"><p>{currencyList[2].amount === "NaN" ? "0" : currencyList[2].amount}</p></div>
             <div className="container col-2">Graph</div>
           </div>
           <div className="row">
             <div className="container col-2">Flag</div>
-            <div className="container col-2" id="3"><p>{currencyList[3].currency}</p></div>
-            <div className="amount col-6 text-right" id="3"><p>{currencyList[3].amount}</p></div>
+            <p className="container col-2" id="3" onClick={this.selectCurrency}>{currencyList[3].currency}</p>
+            <div className="amount col-6 text-right" id="3"><p>{currencyList[3].amount === "NaN" ? "0" : currencyList[3].amount}</p></div>
             <div className="container col-2">Graph</div>
           </div>
         </div>
@@ -190,7 +248,7 @@ class FXRate extends React.Component<IFXRate> {
           </div>
           <div className="row justify-content-center">
 
-            <button className="btn btn-dark" value="refresh" id="refresh" onClick={() => this.updateFXRates(this.props.allRates)}>
+            <button className="btn btn-dark" value="refresh" id="refresh" onClick={() => this.updateExistingRate (this.props.allRates, this.props.currencyList, this.props.dispatchFX)}>
               <FontAwesomeIcon icon={["fas", "sync-alt"]} size="1x" />
             </button>
             <button className="btn btn-dark" value="0" id="zero" onClick={(e: any) => this.onInput(e.target.value)}>0</button>
@@ -202,8 +260,8 @@ class FXRate extends React.Component<IFXRate> {
         </div>
         <div className="container" id="currency-select-wrapper" style={{ visibility: "hidden", position: "absolute", zIndex: 20, top: "10px" }}>
           <CurrencySelection currencyToUpdate={currencyToUpdate} udpateAllCurrencyList={this.props.udpateAllCurrencyList} toggleSelectBox={this.toggleSelectBox}
-            allCurrencyList={this.props.allCurrencyList} dispatchSelectNewCurrency={this.props.dispatchSelectNewCurrency}
-            updateFXRates={this.updateFXRates} allRates={this.props.allRates}/>
+            allCurrencyList={this.props.allCurrencyList} dispatchSelectNewCurrency={this.props.dispatchSelectNewCurrency} dispatchFX={this.props.dispatchFX}
+            updateExistingRate ={this.updateExistingRate} allRates={this.props.allRates} currencyList={this.props.currencyList}/>
         </div>
       </div>
     );

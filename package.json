@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://thquyen11.github.io/quyenaholic.com/",
   "dependencies": {
+    "@types/node": "^10.12.21",
     "@fortawesome/fontawesome-svg-core": "^1.2.13",
     "@fortawesome/free-brands-svg-icons": "^5.7.0",
     "@fortawesome/free-solid-svg-icons": "^5.7.1",
