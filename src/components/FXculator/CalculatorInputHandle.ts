@@ -23,7 +23,7 @@ const specialCharInputHandle = (userInput: string, storeInput: string, operators
 const inputHandler = (userInput: string, storeInput: string, maxDigit: number) => {
   const operators: string[] = ["+", "-", "*", "/"];
 
-  // storeInput length < 30 characters
+  // when storeInput length < 30 characters
   if (storeInput.length < maxDigit) {
     if (storeInput === "0") {
       if (userInput === ".") {
@@ -39,7 +39,7 @@ const inputHandler = (userInput: string, storeInput: string, maxDigit: number) =
       else {
         const lastChar: string = storeInput.slice(0, storeInput.length - 1);
         if (lastChar === "." || operators.indexOf(lastChar) !== -1) {
-          if (userInput !== "." && userInput.indexOf(userInput) === -1) {
+          if (userInput !== "." && operators.indexOf(userInput) !== -1) {
             return storeInput + userInput
           }
         }
@@ -47,7 +47,7 @@ const inputHandler = (userInput: string, storeInput: string, maxDigit: number) =
       }
     }
   }
-  // storeInput length == 30 characters
+  // when storeInput length == 30 characters
   if (userInput === "clear" || userInput === "undo" || userInput === "=") {
     return specialCharInputHandle(userInput, storeInput, operators);
   }

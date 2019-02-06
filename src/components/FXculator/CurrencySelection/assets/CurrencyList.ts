@@ -1,6 +1,9 @@
+// import * as flagUrl from "./flagUrl";
+import USD from "./images/united-states-of-america.png";
+
 export const currencyList:any[]=[
     {
-        flag: "",
+        flag: USD,
         symbol: "USD",
         name: "United States",
     },
@@ -161,11 +164,12 @@ export const currencyList:any[]=[
     },
     {
         flag: "",
-        symbol: "MMK",
-        name: "Myanmar",
-    },{
-        flag: "",
         symbol: "LAK",
         name: "Laos",
+    },
+    {
+        flag: "",
+        symbol: "THB",
+        name: "Thailand",
     },
 ]

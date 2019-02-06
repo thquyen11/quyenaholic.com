@@ -116,6 +116,8 @@ class LandingPage extends React.Component<Props> {
       },
     ];
 
+    console.log('profilePic ', profilePic);
+
     return (
       <div>
         <div className="background-color-layer"></div>

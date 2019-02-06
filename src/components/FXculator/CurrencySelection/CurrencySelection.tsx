@@ -7,10 +7,8 @@ interface ICurrencySelection {
   currencyToUpdate: number;
   allCurrencyList: any[];
   allRates: any;
-  // fxRates: any;
   currencyList: any;
   updateExistingRate: any;
-  // updateFXAmount: any;
   udpateAllCurrencyList: any;
   dispatchSelectNewCurrency: any;
   dispatchFX: any;
@@ -61,10 +59,13 @@ class CurrencySelection extends React.Component<ICurrencySelection> {
   }
 
   render() {
-    const renderCurrencyList = this.props.allCurrencyList.map((data: any) => {
+    console.log(this.props.allCurrencyList);
+    const renderCurrencyList = this.props.allCurrencyList.map((data: any, index:number) => {
+      console.log('data.flag ', data.flag);
       return (
-        <div className="row currency-card">
-          <div className="container col-1">{data.icon}</div>
+        <div className="row currency-card" key={index}>
+          {/* <div className="container col-1">{data.icon}</div> */}
+          <img src={data.flag} className="col-1" alt=""/>
           <div className="container col-9">
             <h6 className="currency-card-symbol">{data.symbol}</h6>
             <p>{data.name}</p>
