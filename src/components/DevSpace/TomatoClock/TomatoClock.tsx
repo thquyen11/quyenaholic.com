@@ -105,9 +105,9 @@ class TomatoClock extends React.Component<ITomatoClock> {
             <button type="button" className="btn btn-dark" id="break-increase" onClick={(e: any) => this.updateClockSetting(e)}>+</button>
           </div>
         </div>
-        <div className="container col-md-6 text-center">
+        <div className="container text-center">
           <h4>Tomato Clock</h4>
-          <div className="container col-md-6" id="clock-container">
+          <div className="container" id="clock-container">
             <h1>{Math.floor(remainSeconds / 60) < 10 ? ("0" + Math.floor(remainSeconds / 60)) : Math.floor(remainSeconds / 60)}
               : {remainSeconds % 60 < 10 ? ("0" + remainSeconds % 60) : remainSeconds % 60}</h1>
           </div>

@@ -186,6 +186,7 @@ class FXRate extends React.Component<IFXRate> {
             </div>
             <div className="amount col-6 text-right"><p>{ currencyList[index].amount === "NaN" ? "0" : currencyList[index].amount }</p></div>
             <div className="container col-2" id="graph">
+            //TODO: implement historical graph
               <FontAwesomeIcon icon={["fas", "chart-line"]} size="2x" />
             </div>
           </div>
