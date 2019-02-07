@@ -7,13 +7,12 @@ import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import registerServiceWorker from './registerServiceWorker';
-import LandingPage from './containers/LandingPage/LandingPage';
+import App from './containers/App';
 import { EmailContact } from "./containers/LandingPage/rLandingPage";
 import { FXRate, Calculator } from "./containers/FXculator/rFXculator";
-import FXculator from "./containers/FXculator/FXculator";
 import { Clock, QuotesBox } from "./containers/DevSpace/rDevSpace";
 import * as WebFont from 'webfontloader';
-import DevSpace from './containers/DevSpace/DevSpace';
+
 
 WebFont.load({
   google: {
@@ -63,15 +62,13 @@ if (process.env.NODE_ENV !== 'production') {
  * without 'exact', the route path is interpreted as /* relative path
  */
 ReactDOM.render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <Switch>
-        <Route exact path='/' component={LandingPage} />
-        <Route exact path='/projects/fxculator' component={FXculator} />
-        <Route exact path='/projects/devspace' component={DevSpace} />
-      </Switch>
-    </BrowserRouter>
-  </Provider>,
+  <BrowserRouter>
+    <Switch>
+      <Provider store={store}>
+        <Route path='/' component={App} />
+      </Provider>
+    </Switch>
+  </BrowserRouter>,
   document.querySelector('#root') as HTMLElement
 );
 

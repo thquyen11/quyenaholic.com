@@ -70,20 +70,18 @@ class DevSpace extends React.Component<Props> {
   render() {
 
     return (
-      <div className="DevSpace-container">
-        <div className="container col-md-6">
-          <div className="container">
-            <TomatoClock clockProps={this.props.clockProps} dispatchClockSetting={this.props.dispatchClockSetting}
-              updateRunStatus={this.props.updateRunStatus} dispatchRemainSeconds={this.props.dispatchRemainSeconds}
-              dispatchTimeoutId={this.props.dispatchTimeoutId} />
-          </div>
-          <div className="container">
-            <QuotesBox quoteProps={this.props.quoteProps} dispatchQuotes={this.props.dispatchQuotes} />
-          </div>
-          <div className="container" id="youtube-container">
-            <div className="embed-responsive embed-responsive-16by9">
-              <iframe className="embed-responsive-item" src="https://www.youtube.com/embed/vAKtNV8KcWg?controls=1&loop=1"></iframe>
-            </div>
+      <div className="container col-md-6" id="DevSpace-container">
+        <div className="container">
+          <TomatoClock clockProps={this.props.clockProps} dispatchClockSetting={this.props.dispatchClockSetting}
+            updateRunStatus={this.props.updateRunStatus} dispatchRemainSeconds={this.props.dispatchRemainSeconds}
+            dispatchTimeoutId={this.props.dispatchTimeoutId} />
+        </div>
+        <div className="container">
+          <QuotesBox quoteProps={this.props.quoteProps} dispatchQuotes={this.props.dispatchQuotes} />
+        </div>
+        <div className="container" id="youtube-container">
+          <div className="embed-responsive embed-responsive-16by9">
+            <iframe className="embed-responsive-item" src="https://www.youtube.com/embed/vAKtNV8KcWg?controls=1&loop=1"></iframe>
           </div>
         </div>
       </div>

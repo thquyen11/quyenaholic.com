@@ -8,6 +8,8 @@ import "../../fontawesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const profilePic = require("./assets/img/profilePic.png");
 import { INPUT_EMAIL, INPUT_SUBJECT, INPUT_BODY } from '../../constans';
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+
 
 interface StateProps {
   email: string,
@@ -30,7 +32,6 @@ interface DispatchProps {
 const mapDispatchToProps = (dispatch: any): DispatchProps => {
   return {
     updateEmailInput: (type: string, payload: string) => {
-      console.log(type, payload);
       dispatch({ type: type, payload: payload })
     }
   };
@@ -86,7 +87,7 @@ class LandingPage extends React.Component<Props> {
     /**
      * ProjectCards information list
      */
-    const projects: any = [
+    const projects: any[] = [
       {
         id: "0",
         name: "RoboBrain",
@@ -94,7 +95,7 @@ class LandingPage extends React.Component<Props> {
         year: "2018",
         photo: "./assets/img/RoboBrain.png",
         githubLink: "https://github.com/thquyen11/RoboBrain",
-        Link: "",
+        liveDemo: "",
       },
       {
         id: "1",
@@ -103,7 +104,7 @@ class LandingPage extends React.Component<Props> {
         year: "2019",
         photo: "./assets/img/DevSpace.jpg",
         githubLink: "https://github.com/thquyen11/thquyen11.github.io/tree/master/src/containers/DevSpace",
-        Link: "/projects/devspace",
+        liveDemo: "/projects/devspace",
       },
       {
         id: "2",
@@ -112,11 +113,13 @@ class LandingPage extends React.Component<Props> {
         year: "2019",
         photo: "",
         githubLink: "https://github.com/thquyen11/thquyen11.github.io/tree/master/src/containers/FXculator",
-        Link: "/project/fxculator",
+        liveDemo: "/project/fxculator",
       },
     ];
 
-    console.log('profilePic ', profilePic);
+    const renderProjects = projects.map((project: any) => {
+      return <ProjectCard project={project} />;
+    });
 
     return (
       <div>
@@ -152,12 +155,10 @@ class LandingPage extends React.Component<Props> {
                     <img src={profilePic} alt="my awesome profile picture" />
                   </div>
                   <div className="container col-md-8">
-                    <p>Hi, I'm an experienced Murex consultant in Reporting, Datamart and End of Day (EOD)
-                      , who also loves software development and data science. I'm recently building a blog
-                      to share my experience, knowledge and learning path of my transition story from Oil&Gas
-                      to IT sector. I'd love to learn data science and machine learning in order to combine my
-                      passion for learning with financial engineering knowledge to explore the potential application
-                      of this cutting-edge technology into banking industry
+                    <p>Hi, I'm an experienced Murex consultant in Datamart Reporting, End-of-Day, etc...
+                      who also loves software development and data science. I'd love to explore the
+                      potential of machine learning in banking industry. Welcome to my blog where I share
+                      my experiences and knowledge on my transition from Oil&Gas to Computer Science.
                     </p>
                   </div>
                 </div>
@@ -168,9 +169,7 @@ class LandingPage extends React.Component<Props> {
               <h4>Projects</h4>
               <div className="card-body">
                 <div className="row justify-content-center">
-                  {projects.map((project: any) => {
-                    return <ProjectCard project={project} />;
-                  })}
+                  {renderProjects}
                 </div>
               </div>
             </div>

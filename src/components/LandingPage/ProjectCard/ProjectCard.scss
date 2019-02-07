@@ -1,15 +1,12 @@
 #project-card{
   margin: 10px 10px;
 
-  #buttons{
+  button{
+    margin: 5px 5px 5px 0;
+    height: 2rem;
     
-    button{
-      margin: 5px 5px 5px 0;
-      height: 2rem;
-      
-      p{
-        font-size: 10pt;
-      }
+    p{
+      font-size: 10pt;
     }
   }
 }
