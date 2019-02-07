@@ -2,6 +2,7 @@ import * as React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./CurrencySelection.scss";
 import { currencyList } from "./assets/CurrencyList"
+import { flags } from "./assets/FlagURL";
 
 interface ICurrencySelection {
   currencyToUpdate: number;
@@ -35,11 +36,10 @@ class CurrencySelection extends React.Component<ICurrencySelection> {
   private onCurrencySelected = (e: any) => {
     e.preventDefault();
     try {
-      const previousNode: Element = e.target.previousSibling;
-      previousNode.children[0].textContent;
-      const symbol: string | null = previousNode.children[0].textContent;
+      const symbol: string = e.target.id;
       if (symbol !== null) {
-        this.props.dispatchSelectNewCurrency(symbol);
+        const flag: string = flags[symbol];
+        this.props.dispatchSelectNewCurrency({ symbol: symbol, flag: flag });
         this.props.updateExistingRate(this.props.allRates, this.props.currencyList, this.props.dispatchFX);
         this.props.toggleSelectBox("hidden");
         this.props.udpateAllCurrencyList(currencyList);
@@ -50,7 +50,7 @@ class CurrencySelection extends React.Component<ICurrencySelection> {
     }
   }
 
-  private closeWindow=()=>{
+  private closeWindow = () => {
     this.props.toggleSelectBox("hidden");
   }
 
@@ -60,33 +60,34 @@ class CurrencySelection extends React.Component<ICurrencySelection> {
 
   render() {
     console.log(this.props.allCurrencyList);
-    const renderCurrencyList = this.props.allCurrencyList.map((data: any, index:number) => {
-      console.log('data.flag ', data.flag);
+    const renderCurrencyList = this.props.allCurrencyList.map((data: any, index: number) => {
       return (
         <div className="row currency-card" key={index}>
-          {/* <div className="container col-1">{data.icon}</div> */}
-          <img src={data.flag} className="col-1" alt=""/>
+          <img src={data.flag} id={data.symbol} onClick={this.onCurrencySelected} alt="country flag" />
           <div className="container col-9">
             <h6 className="currency-card-symbol">{data.symbol}</h6>
             <p>{data.name}</p>
           </div>
-          <input type="radio" onClick={this.onCurrencySelected} aria-label="Radio button for following text input"></input>
         </div>
       )
     })
 
     return (
-      <div className="container col-11" id="currency-selection">
-        <div className="row">
-          <div className="input-group mb-3 col-10" id="search-box">
-            <input type="text" className="form-control" onChange={this.filterCurrencyList} placeholder="Currency" aria-label="search-box" aria-describedby="basic-addon1" autoFocus />
+      <div className="container" id="currency-selection-container">
+        <div className="container" id="currency-selection">
+          <div className="row">
+            <div className="input-group mb-3 col-10" id="search-box">
+              <input type="text" className="form-control" onChange={this.filterCurrencyList} placeholder="Currency" aria-label="search-box" aria-describedby="basic-addon1" autoFocus />
+            </div>
+            <div className="container col-2">
+              <button type="button" className="close" id="btnClose" onClick={this.closeWindow} aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
           </div>
-          <button type="button" className="close" id="btnClose" onClick={this.closeWindow} aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div className="container">
-          {renderCurrencyList}
+          <div className="container countries">
+            {renderCurrencyList}
+          </div>
         </div>
       </div>
     )

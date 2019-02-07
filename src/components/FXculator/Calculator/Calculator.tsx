@@ -18,7 +18,7 @@ class Calculator extends React.Component<ICalculator> {
   }
 
   private onInput = (userInput: string) => {
-    const input: string = inputHandler(userInput, this.props.input, 30);
+    const input: string = inputHandler(userInput, this.props.input, 20);
     if (input !== "") {
       if (userInput === "=") {
         this.props.sendOutput(input);
@@ -35,7 +35,6 @@ class Calculator extends React.Component<ICalculator> {
   }
 
   componentDidUpdate() {
-    console.log('component did update');
     if (this.props.input === "0") {
       this.props.sendOutput("0");
     }

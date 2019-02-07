@@ -8,7 +8,6 @@ import { FX_AMOUNT, FX_RATE, FX_ALL_RATES } from "../../../constans";
 import "../../../fontawesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { currencyList } from "../../../components/FXculator/CurrencySelection/assets/CurrencyList";
-
 interface IFXRate {
   currencyList: any;
   currencyToUpdate: number;
@@ -76,19 +75,19 @@ class FXRate extends React.Component<IFXRate> {
 
       const symbols: string = (currencyList.map((data: any) => data.symbol)).join(",");
       const ACCESS_API: string = "5f6996e69e469cf7e5352ab2a7f2b244";
-      // fetch(`http://data.fixer.io/api/live?access_key=${ACCESS_API}&symbols=${symbols}`)
-      //   .then((res: any) => res.json())
-      //   .then((data: any) => {
-      //     for (let key in data.quotes) {
-      //       allRates[key.substring(3)] = parseFloat(data.quotes[key]);
-      //     }
-      //     this.props.dispatchFX({ type: FX_ALL_RATES, payload: allRates });
-      //     this.updateExistingRate(allRates, this.props.currencyList, this.props.dispatchFX);
-      //     this.saveRate("fxRates", allRates, today);
-      //   })
-      //   .catch((err: any) => {
-      //     console.log(err);
-      //   })
+      fetch(`http://data.fixer.io/api/live?access_key=${ACCESS_API}&symbols=${symbols}`)
+        .then((res: any) => res.json())
+        .then((data: any) => {
+          for (let key in data.quotes) {
+            allRates[key.substring(3)] = parseFloat(data.quotes[key]);
+          }
+          this.props.dispatchFX({ type: FX_ALL_RATES, payload: allRates });
+          this.updateExistingRate(allRates, this.props.currencyList, this.props.dispatchFX);
+          this.saveRate("fxRates", allRates, today);
+        })
+        .catch((err: any) => {
+          console.log(err);
+        })
       this.saveRate("fxRates", allRates, today);
     } else {
       console.log('load from existing fx rate');
@@ -108,7 +107,6 @@ class FXRate extends React.Component<IFXRate> {
       const find: number = allRates[currency];
       if (find !== undefined) existingRate.push(find);
     })
-    console.log(existingRate);
     dispatch({ type: FX_RATE, payload: existingRate });
 
     this.updateFXAmount(currencyList, this.props.fxRates, this.props.dispatchFX);
@@ -134,7 +132,7 @@ class FXRate extends React.Component<IFXRate> {
   private onInput = (userInput: string) => {
     let { currencyList } = this.props;
     console.log(currencyList[0].amount);
-    const input: string = inputHandler(userInput, currencyList[0].amount, 24);
+    const input: string = inputHandler(userInput, currencyList[0].amount, 15);
 
     if (input !== "") {
       this.props.dispatchInput(input);
@@ -179,33 +177,24 @@ class FXRate extends React.Component<IFXRate> {
 
   render() {
     const { currencyList, currencyToUpdate } = this.props;
+    const renderScreen:any[] = this.props.currencyList.map((data:any, index:number)=>{
+      return(
+        <div className="row" id="fxculator-screen-row">
+            <div className="container col-2"><img id={index.toString()} onClick={this.selectCurrency} src={this.props.currencyList[index].flag} alt="country flag" style={{ width: "25px", height: "25px" }}></img></div>
+            <div className="container col-2">
+              <p className="currency-symbol" id={index.toString()} onClick={this.selectCurrency}>{currencyList[index].currency}</p>
+            </div>
+            <div className="amount col-6 text-right"><p>{ currencyList[index].amount === "NaN" ? "0" : currencyList[index].amount }</p></div>
+            <div className="container col-2" id="graph">
+              <FontAwesomeIcon icon={["fas", "chart-line"]} size="2x" />
+            </div>
+          </div>
+      )
+    })
     return (
-      <div className="container col-sm-3" id="FXculator-container">
+      <div className="container col-sm-3" id="FXRates-container">
         <div className="container" id="screen">
-          <div className="row" id="base-currency">
-            <div className="container col-2">Flag</div>
-            <p className="container col-2" id="0" onClick={this.selectCurrency}>{currencyList[0].currency}</p>
-            <div className="amount col-6 text-right"><p>{currencyList[0].amount}</p></div>
-            <div className="container col-2">Graph</div>
-          </div>
-          <div className="row">
-            <div className="container col-2">Flag</div>
-            <p className="container col-2" id="1" onClick={this.selectCurrency}>{currencyList[1].currency}</p>
-            <div className="amount col-6 text-right" id="1"><p>{currencyList[1].amount === "NaN" ? "0" : currencyList[1].amount}</p></div>
-            <div className="container col-2">Graph</div>
-          </div>
-          <div className="row">
-            <div className="container col-2">Flag</div>
-            <p className="container col-2" id="2" onClick={this.selectCurrency}>{currencyList[2].currency}</p>
-            <div className="amount col-6 text-right" id="2"><p>{currencyList[2].amount === "NaN" ? "0" : currencyList[2].amount}</p></div>
-            <div className="container col-2">Graph</div>
-          </div>
-          <div className="row">
-            <div className="container col-2">Flag</div>
-            <p className="container col-2" id="3" onClick={this.selectCurrency}>{currencyList[3].currency}</p>
-            <div className="amount col-6 text-right" id="3"><p>{currencyList[3].amount === "NaN" ? "0" : currencyList[3].amount}</p></div>
-            <div className="container col-2">Graph</div>
-          </div>
+          {renderScreen}
         </div>
         <div className="container text-center mt-5" id="keys">
           <div className="row justify-content-center">

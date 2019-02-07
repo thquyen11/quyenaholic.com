@@ -8,7 +8,6 @@
   #screen{
       margin-top: 20px;
       margin-bottom: 20px;
-      font-size: 14px;
       font-weight: 500;
 
       .container{
@@ -20,7 +19,13 @@
       }
 
       #input{
-          height: 35px;
+          height: 50px;
+          font-size: 2rem;
+      }
+
+      #output{
+        height: 40px;
+        font-size: 1.5rem;
       }
   }
 

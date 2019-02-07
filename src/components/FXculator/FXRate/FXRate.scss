@@ -1,4 +1,4 @@
-#FXculator-container{
+#FXRates-container{
     min-width: 360px;
     min-height: 620px;
     background-color: #3F4A58;
@@ -8,19 +8,38 @@
     #screen{
         margin-top: 20px;
         margin-bottom: 20px;
-        font-size: 14px;
+        padding: 0px 0px;
+        font-size: 0.9rem;
         font-weight: 500;
 
         .row{
-            margin: 10px 0;
+            height: 40px;
+            padding: 0 0;
+            margin: 5px 0;
             color: white;
+
+            .container{
+                padding-top: 5px;
+                padding-bottom: 5px;
+                margin: 0 0;
+            }
+
+            img, .currency-symbol, #graph:hover{
+                cursor: pointer;
+            }
+        }
+        
+        .row:hover{
+            background-color: #107896;
         }
 
         .amount{
+            padding-top: 10px;
+            padding-bottom: 10px;
             background-color: white;
             color: black;
             border-radius: 2px;
-            height: 25px;
+            height: 40px;
         }
     }
 

@@ -1,27 +1,58 @@
-#currency-selection{
-    background-color: white;
-    padding: 10px 10px;
-    border: 1px solid black;
-    border-radius: 5px;
-    max-height: 50vh;
-    overflow-x: auto;
+#currency-selection-container{
+    overflow-x: hidden;
+    position: relative;
+    height: 60vh;
+    width: 100%;
 
-    #search-box{
-        margin-top: 10px;
-        margin-bottom: 20px;
-        margin-left: auto;
-        margin-right: auto;
-    }
+    #currency-selection{
+        position: absolute;
+        z-index: 20;
+        width: 110%;
+        height: 95%;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: -37px;
+        background-color: #107896;
+        overflow-y: scroll;
+    
+        #search-box{
+            margin-bottom: 20px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    
+        button{
+            padding-top: 0;
+        }
 
-    .row{
-        margin: 20px 0;
-        padding: 10px 10px;
-    }
+        .row{
+            margin: 20px 0;
+            padding: 10px 10px;
+        }
+        .countries{
+            margin: 0 0;
+            padding: 0 15px;
 
-    .currency-card{
-        img{
-            width: 20px;
-            height: 20px;
+            input:hover{
+                cursor: pointer;
+            }
+    
+            .currency-card{
+                margin: 10px 0;
+    
+                img{
+                    width: 25px;
+                    height: 25px;
+                    margin: 2px 2px;
+                    transition: scale 1s;
+                }
+
+                img:hover{
+                    cursor: pointer;
+                    transform: scale(1.5, 1.5);
+                }
+            }
         }
     }
 }
