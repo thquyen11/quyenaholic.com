@@ -206,7 +206,7 @@ class FXRate extends React.Component<IFXRate> {
             <button className="btn btn-dark" value="9" id="nine" onClick={(e: any) => this.onInput(e.target.value)}>9</button>
           </div>
           <div className="row justify-content-center">
-            <Link to="/projects/fxculator/calculator">
+            <Link to="/quyenaholic.com/projects/fxculator/calculator">
               <button className="btn btn-dark" value="calculator" id="calculator">
                 <FontAwesomeIcon icon={["fas", "calculator"]} size="1x" />
               </button>
