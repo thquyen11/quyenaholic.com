@@ -7,6 +7,8 @@ import { FX_AMOUNT, FX_RATE, FX_ALL_RATES } from "../../../constans";
 import "../../../fontawesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { currencyList } from "../../../components/FXculator/CurrencySelection/assets/CurrencyList";
+import sampleRates from "./assets/fxRates.json";
+
 interface IFXRate {
   currencyList: any;
   currencyToUpdate: number;
@@ -63,23 +65,35 @@ class FXRate extends React.Component<IFXRate> {
     const quotes: any = this.getExistingRate("fxRates", today);
 
     if (this.isEmptyObject(quotes)) {
-      console.log('get fx rate from api');
+      // console.log('get fx rate from api');
 
       const symbols: string = (currencyList.map((data: any) => data.symbol)).join(",");
-      const ACCESS_API: string = "5f6996e69e469cf7e5352ab2a7f2b244";
-      fetch(`http://data.fixer.io/api/live?access_key=${ACCESS_API}&symbols=${symbols}`)
-        .then((res: any) => res.json())
-        .then((data: any) => {
-          for (let key in data.quotes) {
-            allRates[key.substring(3)] = parseFloat(data.quotes[key]);
-          }
-          this.props.dispatchFX({ type: FX_ALL_RATES, payload: allRates });
-          this.updateExistingRate(allRates, this.props.currencyList, this.props.dispatchFX);
-          this.saveRate("fxRates", allRates, today);
-        })
-        .catch((err: any) => {
-          console.log(err);
-        })
+      //TODO: un-comment this block when purschase API premium account to get HTTPS
+      // const ACCESS_API: string = "5f6996e69e469cf7e5352ab2a7f2b244";
+      // fetch(`http://data.fixer.io/api/live?access_key=${ACCESS_API}&symbols=${symbols}`)
+      //   .then((res: any) => res.json())
+      //   .then((data: any) => {
+      //     for (let key in data.quotes) {
+      //       allRates[key.substring(3)] = parseFloat(data.quotes[key]);
+      //     }
+      //     this.props.dispatchFX({ type: FX_ALL_RATES, payload: allRates });
+      //     this.updateExistingRate(allRates, this.props.currencyList, this.props.dispatchFX);
+      //     this.saveRate("fxRates", allRates, today);
+      //   })
+      //   .catch((err: any) => {
+      //     console.log(err);
+      //   })
+
+      //TODO: remove this block when purschase API premium account to get HTTPS
+      console.log('use sample fx-rates file');
+      const data: any = sampleRates;
+      for (let key in data.quotes) {
+        allRates[key.substring(3)] = parseFloat(data.quotes[key]);
+      }
+      this.props.dispatchFX({ type: FX_ALL_RATES, payload: allRates });
+      this.updateExistingRate(allRates, this.props.currencyList, this.props.dispatchFX);
+      this.saveRate("fxRates", allRates, today);
+
       this.saveRate("fxRates", allRates, today);
     } else {
       console.log('load from existing fx rate');
@@ -164,19 +178,19 @@ class FXRate extends React.Component<IFXRate> {
 
   render() {
     const { currencyList, currencyToUpdate } = this.props;
-    const renderScreen:any[] = this.props.currencyList.map((data:any, index:number)=>{
-      return(
+    const renderScreen: any[] = this.props.currencyList.map((data: any, index: number) => {
+      return (
         <div className="row" id="fxculator-screen-row" key={index}>
-            <div className="container col-2"><img id={index.toString()} onClick={this.selectCurrency} src={this.props.currencyList[index].flag} alt="country flag" style={{ width: "25px", height: "25px" }}></img></div>
-            <div className="container col-2">
-              <p className="currency-symbol" id={index.toString()} onClick={this.selectCurrency}>{currencyList[index].currency}</p>
-            </div>
-            <div className="amount col-6 text-right"><p>{ currencyList[index].amount === "NaN" ? "0" : currencyList[index].amount }</p></div>
-            <div className="container col-2" id="graph">
-            {/* TODO: implement historical graph */}
-              <FontAwesomeIcon icon={["fas", "chart-line"]} size="2x" />
-            </div>
+          <div className="container col-2"><img id={index.toString()} onClick={this.selectCurrency} src={this.props.currencyList[index].flag} alt="country flag"></img></div>
+          <div className="container col-2">
+            <p className="currency-symbol" id={index.toString()} onClick={this.selectCurrency}>{currencyList[index].currency}</p>
           </div>
+          <div className="amount col-6 text-right"><p>{currencyList[index].amount === "NaN" ? "0" : currencyList[index].amount}</p></div>
+          <div className="container col-2" id="graph">
+            {/* TODO: implement historical graph */}
+            <FontAwesomeIcon icon={["fas", "chart-line"]} size="2x" />
+          </div>
+        </div>
       )
     })
     return (

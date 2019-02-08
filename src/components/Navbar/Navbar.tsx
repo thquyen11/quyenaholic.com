@@ -18,13 +18,13 @@ class Navbar extends React.Component {
                             <a className="nav-link" href="/quyenaholic.com/">01 : Home</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#projects-card">02 : Projects</a>
+                            <a className="nav-link" href="/quyenaholic.com/#projects-card">02 : Projects</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#works-card">03 : Work Experiences</a>
+                            <a className="nav-link" href="/quyenaholic.com/#works-card">03 : Work Experiences</a>
                         </li>
                         <li className="nav-item" id="nav-item-last">
-                            <a className="nav-link" href="#contact-card">04 : Contact</a>
+                            <a className="nav-link" href="/quyenaholic.com/#contact-card">04 : Contact</a>
                         </li>
                     </ul>
                 </div>

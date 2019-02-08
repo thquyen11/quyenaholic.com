@@ -9,7 +9,7 @@
         margin-top: 20px;
         margin-bottom: 20px;
         padding: 0px 0px;
-        font-size: 0.9rem;
+        font-size: 18px;
         font-weight: 500;
 
         .row{
@@ -25,6 +25,8 @@
             }
 
             img{
+                height: 30px;
+                width: 30px;
                 border-radius: 50%;
                 box-shadow: 2px 2px 6px 2px #272e36;
                 border: 0.5px solid #272e36;
@@ -40,12 +42,17 @@
         }
 
         .amount{
-            padding-top: 10px;
+            padding-top: 5px;
             padding-bottom: 10px;
             background-color: white;
             color: black;
             border-radius: 2px;
             height: 40px;
+
+            p{
+                padding-top: 0px;
+                padding-bottom: 0px;
+            }
         }
     }
 
