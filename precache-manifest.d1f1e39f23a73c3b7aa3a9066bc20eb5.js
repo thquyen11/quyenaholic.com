@@ -12,19 +12,19 @@ self.__precacheManifest = [
     "url": "/quyenaholic.com/static/js/runtime~main.4896828d.js"
   },
   {
-    "revision": "d2b07aefb51ee88fff5e",
-    "url": "/quyenaholic.com/static/js/main.d2b07aef.chunk.js"
+    "revision": "955d53c5f5f67644b617",
+    "url": "/quyenaholic.com/static/js/main.955d53c5.chunk.js"
   },
   {
     "revision": "3b2d78d5aaa0ddcc9d51",
     "url": "/quyenaholic.com/static/js/1.3b2d78d5.chunk.js"
   },
   {
-    "revision": "d2b07aefb51ee88fff5e",
-    "url": "/quyenaholic.com/static/css/main.e056e926.chunk.css"
+    "revision": "955d53c5f5f67644b617",
+    "url": "/quyenaholic.com/static/css/main.933487cb.chunk.css"
   },
   {
-    "revision": "14361d7c91e6da8b5d1c0ff1dee1e8df",
+    "revision": "2559ae30734aea1e0da5d7426be4a806",
     "url": "/quyenaholic.com/index.html"
   }
 ];
