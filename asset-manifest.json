@@ -1,7 +1,7 @@
 {
   "main.css": "/quyenaholic.com/static/css/main.d8c76c1f.chunk.css",
-  "main.js": "/quyenaholic.com/static/js/main.bb9a803f.chunk.js",
-  "main.js.map": "/quyenaholic.com/static/js/main.bb9a803f.chunk.js.map",
+  "main.js": "/quyenaholic.com/static/js/main.ce8c1f64.chunk.js",
+  "main.js.map": "/quyenaholic.com/static/js/main.ce8c1f64.chunk.js.map",
   "static/js/1.847ab476.chunk.js": "/quyenaholic.com/static/js/1.847ab476.chunk.js",
   "static/js/1.847ab476.chunk.js.map": "/quyenaholic.com/static/js/1.847ab476.chunk.js.map",
   "runtime~main.js": "/quyenaholic.com/static/js/runtime~main.4896828d.js",
@@ -10,6 +10,6 @@
   "static/media/LandingPage.scss": "/quyenaholic.com/static/media/background-img.5930dc28.jpg",
   "static/media/profilePic.png": "/quyenaholic.com/static/media/profilePic.e3c0d42c.png",
   "index.html": "/quyenaholic.com/index.html",
-  "precache-manifest.a7b06af06c21867b66cd79a57a403557.js": "/quyenaholic.com/precache-manifest.a7b06af06c21867b66cd79a57a403557.js",
+  "precache-manifest.1ab8f00a477e54df6a7979ad66ebb7f4.js": "/quyenaholic.com/precache-manifest.1ab8f00a477e54df6a7979ad66ebb7f4.js",
   "service-worker.js": "/quyenaholic.com/service-worker.js"
 }
