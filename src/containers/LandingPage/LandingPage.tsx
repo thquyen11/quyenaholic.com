@@ -138,9 +138,6 @@ class LandingPage extends React.Component<Props> {
                 <a href="https://twitter.com/Quyen77672590" target="blank">
                   <FontAwesomeIcon icon={["fab", "twitter-square"]} size="2x" />
                 </a>
-                <a href="https://www.facebook.com/hquyen11" target="blank">
-                  <FontAwesomeIcon icon={["fab", "facebook"]} size="2x" />
-                </a>
               </p>
             </div>
           </header>
@@ -173,7 +170,7 @@ class LandingPage extends React.Component<Props> {
               <div className="container">
                 <div className="card text-white bg-dark">
                   <h6 className="card-subtitle mb-2 text-muted">2018 - Present</h6>
-                  <h5 className="card-title">Murex Technical Analyst - National Bank of Canada</h5>
+                  <h5 className="card-title">Murex Technical Analyst - BNC</h5>
                   <p className="card-text">
                     <ul>
                       <li>Support End of Day process</li>
@@ -245,9 +242,6 @@ class LandingPage extends React.Component<Props> {
               </a>
               <a href="https://twitter.com/Quyen77672590" target="blank">
                 <FontAwesomeIcon icon={["fab", "twitter-square"]} size="2x" />
-              </a>
-              <a href="https://www.facebook.com/hquyen11" target="blank">
-                <FontAwesomeIcon icon={["fab", "facebook"]} size="2x" />
               </a>
             </p>
           </div>
