@@ -103,7 +103,7 @@ class LandingPage extends React.Component<Props> {
         year: "2019",
         photo: "./assets/img/DevSpace.jpg",
         githubLink: "https://github.com/thquyen11/thquyen11.github.io/tree/master/src/containers/DevSpace",
-        liveDemo: "/projects/devspace",
+        liveDemo: "/quyenaholic.com/projects/devspace",
       },
       {
         id: "2",
@@ -112,7 +112,7 @@ class LandingPage extends React.Component<Props> {
         year: "2019",
         photo: "",
         githubLink: "https://github.com/thquyen11/thquyen11.github.io/tree/master/src/containers/FXculator",
-        liveDemo: "/projects/fxculator",
+        liveDemo: "/quyenaholic.com/projects/fxculator",
       },
     ];
 

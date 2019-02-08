@@ -18,9 +18,9 @@ class App extends React.Component {
                 </div>
                 <BrowserRouter>
                     <Switch>
-                        <Route exact path='/' component={LandingPage} />
-                        <Route exact path='/projects/fxculator' component={FXculator} />
-                        <Route exact path='/projects/devspace' component={DevSpace} />
+                        <Route exact path='/quyenaholic.com/' component={LandingPage} />
+                        <Route exact path='/quyenaholic.com/projects/fxculator' component={FXculator} />
+                        <Route exact path='/quyenaholic.com/projects/devspace' component={DevSpace} />
                     </Switch>
                 </BrowserRouter>
             </div>
