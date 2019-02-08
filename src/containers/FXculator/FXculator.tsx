@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import "./FXculator.scss";
 import FXRate from "../../components/FXculator/FXRate/FXRate";
 import Calculator from "../../components/FXculator/Calculator/Calculator";
-// import "bootstrap/dist/css/bootstrap.min.css";
 import { INPUT, INPUT_CALCULATOR, OUTPUT_CALCULATOR, CURRENCY_TO_UPDATE, UPDATE_ALL_CURRENCY_LIST, SELECT_NEW_CURRENCY } from "../../constans";
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
@@ -69,12 +68,12 @@ class FXculator extends React.Component<Props> {
     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path="/projects/fxculator" render={() => {
+          <Route exact path="/quyenaholic.com/projects/fxculator" render={() => {
             return <FXRate dispatchInput={this.props.dispatchInput} currencyList={this.props.currencyList}
               fxRates={this.props.fxRates} allRates={this.props.allRates} dispatchFX={this.props.dispatchFX} currencyToUpdate={this.props.currencyToUpdate} allCurrencyList={this.props.allCurrencyList}
               dispatchcurrencyToUpdate={this.props.dispatchcurrencyToUpdate} udpateAllCurrencyList={this.props.udpateAllCurrencyList} dispatchSelectNewCurrency={this.props.dispatchSelectNewCurrency}/>
           }} />
-          <Route exact path="/projects/fxculator/calculator" render={() => {
+          <Route exact path="/quyenaholic.com/projects/fxculator/calculator" render={() => {
             return <Calculator input={this.props.input} outcome={this.props.outcome} sendInput={this.props.sendInput}
               sendOutput={this.props.sendOutput} />
           }} />

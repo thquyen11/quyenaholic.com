@@ -147,13 +147,12 @@ class LandingPage extends React.Component<Props> {
 
           <div className="container">
             <div className="card" id="about-me-card">
-              {/* <h4>About me</h4> */}
               <div className="card-body">
                 <div className="row">
                   <div className="container col-md-3" id="profile-pic">
                     <img src={profilePic} alt="my awesome profile picture" />
                   </div>
-                  <div className="container col-md-8">
+                  <div className="container col-md-8 text-white bg-dark">
                     <p>Hi, I'm an experienced Murex consultant in Datamart Reporting, End-of-Day, etc...
                       who also loves software development and data science. I'd love to explore the
                       potential of machine learning in banking industry. Welcome to my blog where I share
@@ -165,11 +164,8 @@ class LandingPage extends React.Component<Props> {
             </div>
 
             <div className="card" id="projects-card">
-              {/* <h4>Projects</h4> */}
-              <div className="card-body">
-                <div className="row justify-content-center">
-                  {renderProjects}
-                </div>
+              <div className="row justify-content-center">
+                {renderProjects}
               </div>
             </div>
 

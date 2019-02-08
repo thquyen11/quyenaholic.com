@@ -88,7 +88,7 @@ class TomatoClock extends React.Component<ITomatoClock> {
     return (
       <div className="container" id="tomato-clock">
         <div className="row">
-          <div className="container col-sm-3 text-center" id="session">
+          <div className="container col-sm-6 text-center" id="session">
             <h5>Session Length</h5>
             <div>
               <h5>{sessionSetting}</h5>
@@ -96,7 +96,7 @@ class TomatoClock extends React.Component<ITomatoClock> {
             <button type="button" className="btn btn-dark" id="session-decrease" onClick={(e: any) => this.updateClockSetting(e)}>-</button>
             <button type="button" className="btn btn-dark" id="session-increase" onClick={(e: any) => this.updateClockSetting(e)}>+</button>
           </div>
-          <div className="container col-sm-3 text-center" id="break">
+          <div className="container col-sm-6 text-center" id="break">
             <h5>Break Length</h5>
             <div>
               <h5>{breakSetting}</h5>

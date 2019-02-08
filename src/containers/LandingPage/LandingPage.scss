@@ -60,14 +60,26 @@ body{
       }
 
       #about-me-card{
-        font-size: 1.2rem;
         font-weight: 400;
-        text-shadow: .5px .5px 2px #888888;
 
         img{
           width: 100%;
           border-radius: 50%;
           box-shadow: 5px 5px 15px 5px #888888;
+        }
+
+        #profile-desc{
+           border-radius: 5px;
+           padding: 30px 20px;
+           box-shadow: 5px 5px 15px 5px #888888;
+        }
+      }
+
+      #projects-card{
+
+        .row{
+          padding-top: 0px;
+          padding-bottom: 30px;
         }
       }
 

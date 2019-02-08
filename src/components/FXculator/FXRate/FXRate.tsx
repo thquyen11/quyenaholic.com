@@ -3,7 +3,6 @@ import "./FXRate.scss";
 import { Link } from "react-router-dom";
 import inputHandler from "../CalculatorInputHandle";
 import CurrencySelection from "../../../components/FXculator/CurrencySelection/CurrencySelection";
-// import "bootstrap/dist/css/bootstrap.min.css";
 import { FX_AMOUNT, FX_RATE, FX_ALL_RATES } from "../../../constans";
 import "../../../fontawesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
