@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/quyenaholic.com/precache-manifest.5519ab240d7a383caeff703c245c6a12.js"
+  "/quyenaholic.com/precache-manifest.f58ae9b661f9b9a1afab8b5b449b4376.js"
 );
 
 workbox.clientsClaim();
