@@ -152,7 +152,7 @@ class LandingPage extends React.Component<Props> {
                   <div className="container col-md-3" id="profile-pic">
                     <img src={profilePic} alt="my awesome profile picture" />
                   </div>
-                  <div className="container col-md-8 text-white bg-dark">
+                  <div className="container col-md-8 text-white bg-dark" id="profile-desc">
                     <p>Hi, I'm an experienced Murex consultant in Datamart Reporting, End-of-Day, etc...
                       who also loves software development and data science. I'd love to explore the
                       potential of machine learning in banking industry. Welcome to my blog where I share
