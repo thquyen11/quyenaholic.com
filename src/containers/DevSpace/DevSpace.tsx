@@ -1,7 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import "./DevSpace.scss";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import TomatoClock from "../../components/DevSpace/TomatoClock/TomatoClock";
 import QuotesBox from "../../components/DevSpace/QuotesBox/QuotesBox";
 import { TIMEOUT_ID, REMAIN_SECONDS } from "../../constans";

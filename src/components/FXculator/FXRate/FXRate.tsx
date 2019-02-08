@@ -3,7 +3,7 @@ import "./FXRate.scss";
 import { Link } from "react-router-dom";
 import inputHandler from "../CalculatorInputHandle";
 import CurrencySelection from "../../../components/FXculator/CurrencySelection/CurrencySelection";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import { FX_AMOUNT, FX_RATE, FX_ALL_RATES } from "../../../constans";
 import "../../../fontawesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -33,24 +33,18 @@ class FXRate extends React.Component<IFXRate> {
   }
 
   private saveRate = (storeName: string, rates: any, date: string) => {
-    console.log('saveRate');
     const todayRates: any = {};
     todayRates[date] = rates;
-    console.log("todayRates ", todayRates)
     localStorage.setItem(storeName, JSON.stringify(todayRates));
-    console.log(localStorage.getItem(storeName));
   }
 
   private getExistingRate = (storeName: string, date: string): any => {
-    console.log('getExistingRate');
     let rates: any = localStorage.getItem(storeName);
-    console.log("rates ", rates);
 
     if (rates === null) {
       return {};
     } else {
       rates = JSON.parse(rates);
-      console.log("rates[date] ", rates[date]);
       if (rates[date] === undefined || this.isEmptyObject(rates[date])) {
         return {};
       } else return rates[date];;
@@ -68,7 +62,6 @@ class FXRate extends React.Component<IFXRate> {
     const allRates: any = {};
     const today: string = (new Date()).toISOString().slice(0, 10);
     const quotes: any = this.getExistingRate("fxRates", today);
-    console.log("quotes ", quotes);
 
     if (this.isEmptyObject(quotes)) {
       console.log('get fx rate from api');
@@ -117,7 +110,6 @@ class FXRate extends React.Component<IFXRate> {
    * then store in currencyList to appear on screen
    */
   private updateFXAmount(currencyList: any[], existingRate: any, dispatch: any) {
-    console.log('fxAmount existingRate  ', existingRate);
     for (let i: number = 1; i < currencyList.length; i++) {
 
       // base currency USD
@@ -131,12 +123,10 @@ class FXRate extends React.Component<IFXRate> {
 
   private onInput = (userInput: string) => {
     let { currencyList } = this.props;
-    console.log(currencyList[0].amount);
     const input: string = inputHandler(userInput, currencyList[0].amount, 15);
 
     if (input !== "") {
       this.props.dispatchInput(input);
-      console.log('input fxRates  ', this.props.fxRates);
       this.updateFXAmount(currencyList, this.props.fxRates, this.props.dispatchFX);
     }
   }
@@ -160,9 +150,7 @@ class FXRate extends React.Component<IFXRate> {
   }
 
   private selectCurrency = (e: any) => {
-    console.log(e.target);
     const id: number = parseInt(e.target.getAttribute("id"));
-    console.log('id ', id);
     try {
       this.props.dispatchcurrencyToUpdate(id);
       this.toggleSelectBox("visible");
@@ -179,7 +167,7 @@ class FXRate extends React.Component<IFXRate> {
     const { currencyList, currencyToUpdate } = this.props;
     const renderScreen:any[] = this.props.currencyList.map((data:any, index:number)=>{
       return(
-        <div className="row" id="fxculator-screen-row">
+        <div className="row" id="fxculator-screen-row" key={index}>
             <div className="container col-2"><img id={index.toString()} onClick={this.selectCurrency} src={this.props.currencyList[index].flag} alt="country flag" style={{ width: "25px", height: "25px" }}></img></div>
             <div className="container col-2">
               <p className="currency-symbol" id={index.toString()} onClick={this.selectCurrency}>{currencyList[index].currency}</p>

@@ -3,13 +3,12 @@ import { connect } from "react-redux";
 import "./LandingPage.scss";
 import { generateDynamicSologan } from "./assets/dynamic_sologan";
 import ProjectCard from '../../components/LandingPage/ProjectCard/ProjectCard';
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import "../../fontawesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const profilePic = require("./assets/img/profilePic.png");
 import { INPUT_EMAIL, INPUT_SUBJECT, INPUT_BODY } from '../../constans';
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-
+import Navbar from "../../components/Navbar/Navbar";
 
 interface StateProps {
   email: string,
@@ -113,7 +112,7 @@ class LandingPage extends React.Component<Props> {
         year: "2019",
         photo: "",
         githubLink: "https://github.com/thquyen11/thquyen11.github.io/tree/master/src/containers/FXculator",
-        liveDemo: "/project/fxculator",
+        liveDemo: "/projects/fxculator",
       },
     ];
 
@@ -122,9 +121,9 @@ class LandingPage extends React.Component<Props> {
     });
 
     return (
-      <div>
-        <div className="background-color-layer"></div>
+      <div className="container" id="landing-page-wraper">
         <main className="container">
+          <div className="background-color-layer"></div>
           <header>
             <div className="text-center">
               <h1>Hello, I'm Quyen</h1>
@@ -148,7 +147,7 @@ class LandingPage extends React.Component<Props> {
 
           <div className="container">
             <div className="card" id="about-me-card">
-              <h4>About me</h4>
+              {/* <h4>About me</h4> */}
               <div className="card-body">
                 <div className="row">
                   <div className="container col-md-3" id="profile-pic">
@@ -166,7 +165,7 @@ class LandingPage extends React.Component<Props> {
             </div>
 
             <div className="card" id="projects-card">
-              <h4>Projects</h4>
+              {/* <h4>Projects</h4> */}
               <div className="card-body">
                 <div className="row justify-content-center">
                   {renderProjects}
@@ -176,10 +175,46 @@ class LandingPage extends React.Component<Props> {
 
             <div className="card" id="works-card">
               <div className="container">
-                <div className="card col-md-3 d-inline-block">
-                  <h6 className="card-subtitle mb-2 text-muted">2017-2015</h6>
-                  <h5 className="card-title">Web developer</h5>
-                  <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card"s content.</p>
+                <div className="card text-white bg-dark">
+                  <h6 className="card-subtitle mb-2 text-muted">2018 - Present</h6>
+                  <h5 className="card-title">Murex Technical Analyst - National Bank of Canada</h5>
+                  <p className="card-text">
+                    <ul>
+                      <li>Support End of Day process</li>
+                      <li>Technical support Murex user: Datamart Reporting, trades...</li>
+                    </ul>
+                  </p>
+                </div>
+              </div>
+              <div className="container">
+                <div className="card text-white bg-dark">
+                  <h6 className="card-subtitle mb-2 text-muted">2016 - 2017</h6>
+                  <h5 className="card-title">Murex Technical Consultant - Upskills</h5>
+                  <p className="card-text">
+                    <ul>
+                      <li>Participate in Murex migration from 2.11 to 3.1 - TMB bank, Thailand</li>
+                      <li>Murex integration stream including Reporting (Datamart), Market Data (RTBS, MDRS, MDIT), Confirmation</li>
+                      <li>Involved in quality assessment for reporting before deliver to client</li>
+                      <li>On-site support SIT, UAT, Go-Live: fix bugs on spot, communicate with User and developer team in order to clarify the business requirement, change request and enhanced the bug fixing progress</li>
+                      <li>Participate in project management, support project manager to follow-up the schedule and man power</li>
+                    </ul>
+                  </p>
+                </div>
+              </div>
+              <div className="container">
+                <div className="card text-white bg-dark">
+                  <h6 className="card-subtitle mb-2 text-muted">2013 - 2015</h6>
+                  <h5 className="card-title">Field Engineer - Schlumberger</h5>
+                  <p className="card-text">
+                    <ul>
+                      <li>Maximus ESP installation, commissioning, monitoring and troubleshooting for Vietsov Petro in White Tiger field, Vietnam</li>
+                      <li>ESP surface equipment commissioning, startup and troubleshooting with new SLB generation VSD S7+ in Nongyao field, Thailand</li>
+                      <li>Maximus ESP Installation with POD and sand screen in Bertam field, Malaysia</li>
+                      <li>Maximus ESP Pull and Run with Trident Motor and Zenith downhole sensor in Su Tu Trang field, Vietnam</li>
+                      <li>Gaslift Valves calibration and maintenance – SLB, WFT, Baker Hughes gaslift valves</li>
+                      <li>Leading the field team and liaising with client and another department to provide the best Service Quality</li>
+                    </ul>
+                  </p>
                 </div>
               </div>
             </div>
@@ -196,7 +231,7 @@ class LandingPage extends React.Component<Props> {
                 <div className="form-group">
                   <textarea className="form-control" id="message" rows={3} onChange={(event: any) => this.props.updateEmailInput(INPUT_BODY, event.target.value)} required></textarea>
                 </div>
-                <input type="submit" className="btn btn-dark" onClick={(event: any) => this.sendEmail(event)} value="Send message" />
+                <input type="submit" className="btn btn-info" onClick={(event: any) => this.sendEmail(event)} value="Send message" />
               </form>
             </div>
           </div>

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import "./FXculator.scss";
 import FXRate from "../../components/FXculator/FXRate/FXRate";
 import Calculator from "../../components/FXculator/Calculator/Calculator";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import { INPUT, INPUT_CALCULATOR, OUTPUT_CALCULATOR, CURRENCY_TO_UPDATE, UPDATE_ALL_CURRENCY_LIST, SELECT_NEW_CURRENCY } from "../../constans";
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
@@ -66,7 +66,6 @@ class FXculator extends React.Component<Props> {
   }
 
   render() {
-    console.log('FXculator rendering');
     return (
       <BrowserRouter>
         <Switch>
@@ -81,7 +80,6 @@ class FXculator extends React.Component<Props> {
           }} />
         </Switch>
       </BrowserRouter>
-
     );
   }
 }

@@ -1,5 +1,5 @@
 import * as React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import "./CurrencySelection.scss";
 import { currencyList } from "./assets/CurrencyList"
 import { flags } from "./assets/FlagURL";
@@ -22,13 +22,18 @@ class CurrencySelection extends React.Component<ICurrencySelection> {
   }
 
   private filterCurrencyList = (e: any) => {
-    const input: string = e.target.value;
-    console.log('input ', input);
+    let input: string = e.target.value;
     if (input === "") {
       this.props.udpateAllCurrencyList(currencyList);
     }
     else {
-      const filteredList: any[] = currencyList.filter((data: any) => data.symbol.indexOf(input) !== -1 || data.name.indexOf(input) !== -1)
+      // const filteredList: any[] = currencyList.filter((data: any) => data.symbol.indexOf(input) !== -1 || data.name.indexOf(input) !== -1)
+      const filteredList: any[] = currencyList.filter((data: any) => {
+        input = input.toLowerCase();
+        const symbol:string = data.symbol.toLowerCase();
+        const name:string = data.name.toLowerCase();
+        return symbol.indexOf(input) !== -1 || name.indexOf(input) !== -1;
+      })
       this.props.udpateAllCurrencyList(filteredList);
     }
   }
@@ -59,7 +64,6 @@ class CurrencySelection extends React.Component<ICurrencySelection> {
   }
 
   render() {
-    console.log(this.props.allCurrencyList);
     const renderCurrencyList = this.props.allCurrencyList.map((data: any, index: number) => {
       return (
         <div className="row currency-card" key={index}>

@@ -1,5 +1,13 @@
+#project-card:hover{
+  transform: scale(1.05);
+}
+
 #project-card{
   margin: 10px 10px;
+  min-width: 15rem;
+  max-width: 18rem;
+  box-shadow: 5px 5px 15px 5px #888888;
+  transition: all .2s ease-in-out;
 
   button{
     margin: 5px 5px 5px 0;
@@ -8,5 +16,10 @@
     p{
       font-size: 10pt;
     }
+  }
+
+  #button{
+    margin-top: 20px;
+    margin-bottom: 0px;
   }
 }
